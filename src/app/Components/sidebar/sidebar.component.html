@@ -1,0 +1,15 @@
+<div class="container">
+  <img src="./assets/img/logo.jpg" alt="logo-cintana" />
+
+  <div class="container-buttons">
+    @for (boton of botones; track $index) {
+    <button
+      (click)="boton.nombre == 'Cerrar Sesión' ? logOut() : tabClicked($index)"
+      [ngClass]="{ activo: boton.activo }"
+      mat-button
+    >
+      {{ boton.nombre | titlecase }}
+    </button>
+    }
+  </div>
+</div>
