@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "portal-de-la-cintana": {
+      "hosting": {
+        "portal-de-la-cintana": [
+          "portal-de-la-cintana"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "portal-de-la-cintana"
+  }
+}

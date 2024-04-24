@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.boton {
+  border-radius: 0 !important;
+  padding-top: 25px !important;
+  padding-bottom: 25px !important;
+}
+.boton-azul {
+  background-color: #3056d3 !important;
+  color: white !important;
+}

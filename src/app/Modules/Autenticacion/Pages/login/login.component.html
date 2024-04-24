@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="form">
+    <img src="./assets/img/logo.jpg" alt="logo-cintana" />
+    <form [formGroup]="formulario" (ngSubmit)="login()">
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <input matInput type="text" formControlName="correo" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="contrasena"
+          (keydown.enter)="login()"
+        />
+      </mat-form-field>
+    </form>
+    <!-- <app-button-blue (click)="login()">Ingresar</app-button-blue> -->
+    <button
+      mat-raised-button
+      type="submit"
+      class="boton boton-azul"
+      (click)="login()"
+    >
+      Ingresar
+    </button>
+  </div>
+  <img class="banner" src="./assets/img/fondo.jpg" alt="cabaña" />
+</div>
