@@ -18,6 +18,13 @@ export const routes: Routes = [
             (m) => m.routes
           ),
       },
+      {
+        path: 'inventarios',
+        loadChildren: () =>
+          import('./Modules/Inventarios/inventarios.routes').then(
+            (m) => m.routes
+          ),
+      },
     ],
   },
 ];

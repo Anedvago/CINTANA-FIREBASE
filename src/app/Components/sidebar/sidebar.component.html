@@ -3,13 +3,34 @@
 
   <div class="container-buttons">
     @for (boton of botones; track $index) {
+
     <button
       (click)="boton.nombre == 'Cerrar Sesión' ? logOut() : tabClicked($index)"
       [ngClass]="{ activo: boton.activo }"
       mat-button
     >
-      {{ boton.nombre | titlecase }}
+      <div class="content-button">
+        {{ boton.nombre | titlecase }}
+        @if(boton.desplegable){
+        <span class="material-symbols-outlined">
+          {{ boton.activo ? "keyboard_arrow_up" : "keyboard_arrow_down" }}
+        </span>
+        }
+      </div>
     </button>
-    }
+    @if(boton.activo){
+    <div class="container-childrens">
+      @for (botonHijo of boton.botones; track $index) {
+      <button
+        mat-button
+        (click)="tabClicked($index)"
+        [ngClass]="{ activo: botonHijo.activo }"
+        class="button-children"
+      >
+        {{ botonHijo.nombre | titlecase }}
+      </button>
+      }
+    </div>
+    } }
   </div>
 </div>

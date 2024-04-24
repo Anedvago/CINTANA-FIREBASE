@@ -12,23 +12,37 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent {
   public botones = [
-    { nombre: 'inicio', activo: true, ruta: 'admin' },
-    { nombre: 'inventario', activo: false, ruta: 'inventory' },
-    { nombre: 'reservaciones', activo: false, ruta: 'reservations' },
-    { nombre: 'punto de venta', activo: false, ruta: 'sales' },
-    { nombre: 'Cerrar Sesión', activo: false, ruta: '' },
-  ];
-
-  public buttonsDropDownInventory = [
-    { nombre: 'Articulos', activo: false, ruta: 'inventory/articles' },
-    { nombre: 'Servicios', activo: false, ruta: 'inventory/services' },
-    { nombre: 'Categorias', activo: false, ruta: 'inventory/categories' },
-    { nombre: 'Compras', activo: false, ruta: 'inventory/purchases' },
-    { nombre: 'Bajas', activo: false, ruta: 'inventory/discharges' },
-  ];
-  public buttonsDropDownReservations = [
-    { nombre: 'Habitaciones', activo: false, ruta: 'reservations/rooms' },
-    { nombre: 'Checks', activo: false, ruta: 'reservations/checks' },
+    { nombre: 'inicio', activo: true, ruta: 'admin', desplegable: false },
+    {
+      nombre: 'inventario',
+      activo: false,
+      ruta: 'inventarios',
+      desplegable: true,
+      botones: [
+        { nombre: 'Articulos', activo: false, ruta: 'inventory/articles' },
+        { nombre: 'Servicios', activo: false, ruta: 'inventory/services' },
+        { nombre: 'Categorias', activo: false, ruta: 'inventory/categories' },
+        { nombre: 'Compras', activo: false, ruta: 'inventory/purchases' },
+        { nombre: 'Bajas', activo: false, ruta: 'inventory/discharges' },
+      ],
+    },
+    {
+      nombre: 'reservaciones',
+      activo: false,
+      ruta: 'reservations',
+      desplegable: true,
+      botones: [
+        { nombre: 'Habitaciones', activo: false, ruta: 'reservations/rooms' },
+        { nombre: 'Checks', activo: false, ruta: 'reservations/checks' },
+      ],
+    },
+    {
+      nombre: 'punto de venta',
+      activo: false,
+      ruta: 'sales',
+      desplegable: false,
+    },
+    { nombre: 'Cerrar Sesión', activo: false, ruta: '', desplegable: false },
   ];
 
   constructor(private router: Router) {}

@@ -17,10 +17,6 @@ img {
   flex-direction: column;
 }
 
-.button-active {
-  background-color: aqua !important;
-}
-
 button {
   width: 100%;
   display: flex !important;
@@ -30,6 +26,21 @@ button {
   padding-bottom: 30px;
   color: #637381 !important;
   border-radius: 0;
+}
+.content-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 17vw !important;
+}
+.container-childrens {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+.button-children {
+  width: 85%;
 }
 .activo {
   border-right: 5px solid #3056d3 !important;
