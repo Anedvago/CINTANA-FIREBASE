@@ -17,7 +17,7 @@ export class PanelAdministracionComponent {
   public rooms: any = [];
 
   constructor(private habitacionService: HabitacionService) {
-    habitacionService.prueba().then((data) => {
+    habitacionService.obtenerHabitaciones().then((data) => {
       console.log(data);
     });
   }
