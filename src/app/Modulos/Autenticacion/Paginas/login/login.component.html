@@ -1,6 +1,10 @@
 <mat-grid-list cols="12" rowHeight="100%">
-  <mat-grid-tile [colspan]="esMovil ? 12 : 4" [rowspan]="1">
-    <div class="formulario">
+  <mat-grid-tile [colspan]="esMovil || esTablet ? 12 : 4" [rowspan]="1">
+    @if(esMovil || esTablet){
+    <img class="banner-fondo" src="/assets/img/fondo.jpg" alt="cabaña" />
+    }
+
+    <div class="formulario" [ngClass]="{ card: esMovil || esTablet }">
       <img src="/assets/img/logo.jpg" alt="logo-cintana" class="logo" />
       <form [formGroup]="formularioLogin">
         <mat-form-field>
@@ -17,18 +21,18 @@
           <mat-error>Ingrese una contraseña</mat-error>
           }
         </mat-form-field>
+        <button
+          class="btn btn-azul"
+          [disabled]="formularioLogin.invalid"
+          mat-raised-button
+          (click)="login()"
+        >
+          Ingresar
+        </button>
       </form>
-      <button
-        class="btn btn-azul"
-        [disabled]="formularioLogin.invalid"
-        mat-raised-button
-        (click)="login()"
-      >
-        Ingresar
-      </button>
     </div>
   </mat-grid-tile>
-  @if(!esMovil){
+  @if(!esMovil && !esTablet){
   <mat-grid-tile [colspan]="8" [rowspan]="1">
     <img class="banner" src="/assets/img/fondo.jpg" alt="cabaña" />
   </mat-grid-tile>

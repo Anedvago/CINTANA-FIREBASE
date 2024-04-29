@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { LayoutService } from '../../../../Servicios/layout.service';
@@ -19,12 +19,14 @@ import { Router } from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    NgClass,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
   esMovil = this.layoutService.esMovil;
+  esTablet = this.layoutService.esTablet;
   formularioLogin = this.formBuilder.group({
     usuario: ['', [Validators.required, Validators.email]],
     contrasena: ['', [Validators.required]],

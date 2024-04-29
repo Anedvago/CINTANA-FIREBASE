@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { LayoutService } from '../../Servicios/layout.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -21,19 +22,37 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    AsyncPipe,
     RouterOutlet,
     RouterLink,
   ],
 })
 export class SidebarComponent {
-  private breakpointObserver = inject(BreakpointObserver);
-
-  isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
-    .pipe(
-      map((result) => result.matches),
-      shareReplay()
-    );
-    
+  esMovil: boolean = false;
+  esTablet: boolean = false;
+  botones = [
+    {
+      texto: 'Inicio',
+      ruta: 'inicio',
+    },
+    {
+      texto: 'Inventarios',
+      ruta: 'inventarios',
+    },
+    {
+      texto: 'Reservaciones',
+      ruta: 'reservaciones',
+    },
+    {
+      texto: 'Pasadias',
+      ruta: 'pasadias',
+    },
+    {
+      texto: 'Punto de venta',
+      ruta: 'punto-de-venta',
+    },
+  ];
+  constructor(private layoutService: LayoutService) {
+    this.esMovil = this.layoutService.esMovil;
+    this.esTablet = this.layoutService.esTablet;
+  }
 }

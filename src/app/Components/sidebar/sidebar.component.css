@@ -3,7 +3,8 @@
 }
 
 .sidenav {
-  width: 250px;
+  width: 300px;
+  text-align: center;
 }
 
 .sidenav .mat-toolbar {
@@ -14,4 +15,22 @@
   position: sticky;
   top: 0;
   z-index: 1;
+}
+.logo {
+  height: 15%;
+  width: fit-content;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+mat-nav-list {
+  display: flex !important;
+  flex-direction: column !important;
+}
+mat-nav-list button {
+  text-align: left !important;
+  border-radius: 0 !important;
+  padding: 25px 25px 25px 50px !important;
+  width: 100% !important;
+  color: #637381 !important;
+  justify-content: flex-start !important;
 }

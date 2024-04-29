@@ -2,11 +2,11 @@ mat-grid-list {
   height: 100vh;
 }
 .formulario {
-  margin-top: -100px;
+  margin-top: -80px;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center;
-  height: 100vh;
+  height: 50vh;
   align-items: center;
 }
 form {
@@ -19,8 +19,21 @@ form {
   object-fit: cover;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+.banner-fondo {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  z-index: -1;
+}
 .logo {
-  height: 15%;
+  height: 30%;
   width: fit-content;
   margin-bottom: 20px;
+}
+.card {
+  background-color: white;
+  width: 80%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 30px 0px;
 }
