@@ -10,13 +10,15 @@ export class SupabaseService {
   private supabaseEnvironments: { apiKey: string; url: string } =
     environment.supabase;
   constructor() {
+    this.crearClienteDeSupabase();
+  }
+  crearClienteDeSupabase() {
     try {
       this.supabaseClient = createClient(
         this.supabaseEnvironments.url,
         this.supabaseEnvironments.apiKey
       );
     } catch (error) {
-      console.log('El error por aca es');
       console.log(error);
     }
   }

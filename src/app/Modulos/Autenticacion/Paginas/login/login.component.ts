@@ -7,6 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { UsuarioService } from '../../../../Servicios/usuario.service';
+import { AlertaService } from '../../../../Servicios/alerta.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -30,7 +32,9 @@ export class LoginComponent {
   constructor(
     private layoutService: LayoutService,
     private formBuilder: FormBuilder,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private alertaService: AlertaService,
+    private router: Router
   ) {}
 
   login() {
@@ -40,7 +44,11 @@ export class LoginComponent {
         this.formularioLogin.get('contrasena')?.value!
       )
       .then((data) => {
-        console.log(data);
+        if (data.error) {
+          this.alertaService.error('Usuario o contraseña incorrectos');
+        } else {
+          this.router.navigate(['inicio']);
+        }
       });
   }
 }

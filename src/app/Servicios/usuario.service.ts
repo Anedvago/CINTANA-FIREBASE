@@ -12,19 +12,11 @@ export class UsuarioService {
   }
 
   public async login(email: string, password: string): Promise<any> {
-    try {
-      const { data, error }: AuthTokenResponse =
-        await this.supabaseClient.auth.signInWithPassword({
-          email: email,
-          password: password,
-        });
-      /* this.setUser(); */
-      return error ? error : data;
-    } catch (error) {
-      console.log('El error es');
-
-      console.log(error);
-      /*  return error as AuthError; */
-    }
+    //const { data, error }: AuthTokenResponse =
+    return await this.supabaseClient.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+    //return error ? error : data;
   }
 }
