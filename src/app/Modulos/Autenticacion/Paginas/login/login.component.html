@@ -1,0 +1,35 @@
+<mat-grid-list cols="12" rowHeight="100%">
+  <mat-grid-tile [colspan]="esMovil ? 12 : 4" [rowspan]="1">
+    <div class="formulario">
+      <img src="/assets/img/logo.jpg" alt="logo-cintana" class="logo" />
+      <form [formGroup]="formularioLogin">
+        <mat-form-field>
+          <mat-label>Usuario</mat-label>
+          <input matInput type="email" formControlName="usuario" />
+          @if (formularioLogin.get("usuario")?.invalid) {
+          <mat-error>Ingrese un correo valido</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" formControlName="contrasena" />
+          @if (formularioLogin.get("contrasena")?.invalid) {
+          <mat-error>Ingrese una contraseña</mat-error>
+          }
+        </mat-form-field>
+      </form>
+      <button
+        class="btn btn-azul"
+        [disabled]="formularioLogin.invalid"
+        mat-raised-button
+      >
+        Ingresar
+      </button>
+    </div>
+  </mat-grid-tile>
+  @if(!esMovil){
+  <mat-grid-tile [colspan]="8" [rowspan]="1">
+    <img class="banner" src="/assets/img/fondo.jpg" alt="cabaña" />
+  </mat-grid-tile>
+  }
+</mat-grid-list>

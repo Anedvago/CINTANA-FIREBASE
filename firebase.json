@@ -1,9 +1,0 @@
-{
-  "hosting": [
-    {
-      "target": "portal-de-la-cintana",
-      "source": ".",
-      "frameworksBackend": {}
-    }
-  ]
-}

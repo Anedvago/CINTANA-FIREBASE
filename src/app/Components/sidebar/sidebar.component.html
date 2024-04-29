@@ -1,36 +1,41 @@
-<div class="container">
-  <img src="./assets/img/logo.jpg" alt="logo-cintana" />
-
-  <div class="container-buttons">
-    @for (boton of botones; track $index) {
-
-    <button
-      (click)="boton.nombre == 'Cerrar Sesión' ? logOut() : tabClicked($index)"
-      [ngClass]="{ activo: boton.activo }"
-      mat-button
-    >
-      <div class="content-button">
-        {{ boton.nombre | titlecase }}
-        @if(boton.desplegable){
-        <span class="material-symbols-outlined">
-          {{ boton.activo ? "keyboard_arrow_up" : "keyboard_arrow_down" }}
-        </span>
-        }
-      </div>
-    </button>
-    @if(boton.activo){
-    <div class="container-childrens">
-      @for (botonHijo of boton.botones; track $index) {
-      <button
-        mat-button
-        (click)="tabClicked($index)"
-        [ngClass]="{ activo: botonHijo.activo }"
-        class="button-children"
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      @if (isHandset$ | async) {
+      <a mat-list-item [routerLink]="['inicio']" (click)="drawer.toggle()"
+        >Link 1</a
       >
-        {{ botonHijo.nombre | titlecase }}
+      }@else{
+      <a mat-list-item [routerLink]="['inicio']">Link 1</a>
+      }
+
+      <a mat-list-item [routerLink]="['inventarios']">Link 2</a>
+      <a mat-list-item [routerLink]="['reservaciones']">Link 3</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      @if (isHandset$ | async) {
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       }
-    </div>
-    } }
-  </div>
-</div>
+      <span>portal-de-la-cintana</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
