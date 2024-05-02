@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-content>
+    <div class="header">
+      <span
+        [ngStyle]="{ 'background-color': color2, color: color1 }"
+        class="material-icons icono"
+      >
+        bed
+      </span>
+      <div class="contenido">{{ texto | titlecase }}</div>
+    </div>
+    <div class="numero">
+      <span>
+        {{ numero }}
+      </span>
+    </div>
+    <div class="container-barra">
+      <div
+        class="barra"
+        [ngStyle]="{ 'width.%': porcentaje, 'background-color': color1 }"
+      ></div>
+    </div>
+  </mat-card-content>
+</mat-card>

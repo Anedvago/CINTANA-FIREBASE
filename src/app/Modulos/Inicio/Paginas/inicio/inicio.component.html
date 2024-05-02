@@ -1,1 +1,21 @@
-<p>inicio works!</p>
+<mat-grid-list
+  [cols]="esMovil ? '1' : esTablet ? '3' : '4'"
+  [rowHeight]="esMovil ? '15vh' : esTablet ? '20vh' : '33vh'"
+>
+  <mat-grid-tile [colspan]="1" [rowspan]="1"
+    ><app-card-habitacion></app-card-habitacion
+  ></mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1"
+    ><app-card-habitacion></app-card-habitacion
+  ></mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1"
+    ><app-card-habitacion></app-card-habitacion
+  ></mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1"
+    ><app-card-habitacion></app-card-habitacion
+  ></mat-grid-tile>
+
+  <!-- <mat-grid-tile [colspan]="2" [rowspan]="1">Cards</mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="2">Cards</mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="1">Cards</mat-grid-tile> -->
+</mat-grid-list>

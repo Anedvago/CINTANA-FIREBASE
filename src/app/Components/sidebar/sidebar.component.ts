@@ -28,8 +28,8 @@ import { LayoutService } from '../../Servicios/layout.service';
   ],
 })
 export class SidebarComponent {
-  esMovil: boolean = false;
-  esTablet: boolean = false;
+  esMovil: boolean = this.layoutService.esMovil;
+  esTablet: boolean = this.layoutService.esTablet;
   botones = [
     {
       texto: 'Inicio',
@@ -52,8 +52,5 @@ export class SidebarComponent {
       ruta: 'punto-de-venta',
     },
   ];
-  constructor(private layoutService: LayoutService) {
-    this.esMovil = this.layoutService.esMovil;
-    this.esTablet = this.layoutService.esTablet;
-  }
+  constructor(private layoutService: LayoutService) {}
 }

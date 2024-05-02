@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
-
+import { MatGridListModule } from '@angular/material/grid-list';
+import { CardHabitacionComponent } from '../../Componentes/card-habitacion/card-habitacion.component';
+import { LayoutService } from '../../../../Servicios/layout.service';
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [],
+  imports: [MatGridListModule, CardHabitacionComponent],
   templateUrl: './inicio.component.html',
-  styleUrl: './inicio.component.css'
+  styleUrl: './inicio.component.css',
 })
 export class InicioComponent {
-
+  esMovil = this.layoutService.esMovil;
+  esTablet = this.layoutService.esTablet;
+  constructor(private layoutService: LayoutService) {}
 }
