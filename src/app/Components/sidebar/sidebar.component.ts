@@ -8,7 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { LayoutService } from '../../Servicios/layout.service';
 
 @Component({
@@ -24,6 +24,7 @@ import { LayoutService } from '../../Servicios/layout.service';
     MatIconModule,
     RouterOutlet,
     RouterLink,
+    RouterLinkActive,
   ],
 })
 export class SidebarComponent {

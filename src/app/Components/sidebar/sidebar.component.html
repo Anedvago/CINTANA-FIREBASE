@@ -7,25 +7,21 @@
     [mode]="esMovil || esTablet ? 'over' : 'side'"
     [opened]="esMovil === false && esTablet === false"
   >
-    <img src="/assets/img/logo.jpg" alt="logo-cintana" class="logo" />
-    <mat-nav-list>
-      @for(boton of botones;track boton){
-      <!--  <a
-        mat-list-item
-        [routerLink]="[boton.ruta]"
-        (click)="esMovil ? drawer.toggle() : ''"
-      >
-        {{ boton.texto }}
-      </a> -->
-      <button
-        mat-button
-        [routerLink]="[boton.ruta]"
-        (click)="esMovil ? drawer.toggle() : ''"
-      >
-        {{ boton.texto }}
-      </button>
-      }
-    </mat-nav-list>
+    <div class="sidebar">
+      <img src="/assets/img/logo.jpg" alt="logo-cintana" class="logo" />
+      <mat-nav-list>
+        @for(boton of botones;track boton){
+        <button
+          mat-button
+          [routerLink]="[boton.ruta]"
+          routerLinkActive="activo"
+          (click)="esMovil || esTablet ? drawer.toggle() : ''"
+        >
+          {{ boton.texto }}
+        </button>
+        }
+      </mat-nav-list>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content>
     @if (esMovil || esTablet) {
@@ -38,11 +34,10 @@
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-
       <span>Portal de la cintana</span>
     </mat-toolbar>
     }
+    <!-- Contenido -->
     <router-outlet></router-outlet>
-    <!-- Add Content Here -->
   </mat-sidenav-content>
 </mat-sidenav-container>

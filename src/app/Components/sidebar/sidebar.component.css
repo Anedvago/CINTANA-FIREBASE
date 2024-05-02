@@ -5,6 +5,12 @@
 .sidenav {
   width: 300px;
   text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.sidebar {
+  width: 280px;
+  height: 100%;
 }
 
 .sidenav .mat-toolbar {
@@ -33,4 +39,12 @@ mat-nav-list button {
   width: 100% !important;
   color: #637381 !important;
   justify-content: flex-start !important;
+}
+.activo {
+  border-right: 5px solid #3056d3 !important;
+  background-color: #f4f7ff !important;
+}
+mat-sidenav-content {
+  background-color: #e2e6f4;
+  
 }
