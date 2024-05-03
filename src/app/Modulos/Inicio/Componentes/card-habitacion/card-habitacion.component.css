@@ -22,14 +22,16 @@ mat-card-content {
 }
 .contenido {
   font-weight: bold;
+  text-align: start;
+  width: 70%;
 }
 
 .numero {
-  font-size: 50px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   height: 100%;
+  width: 40%;
 }
 .barra {
   height: 10px;

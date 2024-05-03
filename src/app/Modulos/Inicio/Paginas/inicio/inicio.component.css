@@ -9,3 +9,11 @@ app-card-ingresos {
   height: 90%;
   width: 97.5%;
 }
+app-card-clientes {
+  height: 95%;
+  width: 97.5%;
+}
+app-card-stock-bajo {
+  height: 95%;
+  width: 97.5%;
+}

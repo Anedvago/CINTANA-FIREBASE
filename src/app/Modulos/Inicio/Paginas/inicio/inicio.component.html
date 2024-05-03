@@ -1,54 +1,64 @@
 <mat-grid-list
-  [cols]="esMovil ? '2' : esTablet ? '3' : '4'"
+  [cols]="esMovil ? '2' : esTablet ? '12' : '4'"
   [rowHeight]="esMovil ? '20vh' : esTablet ? '20vh' : '33vh'"
 >
-  <mat-grid-tile [colspan]="1" [rowspan]="1">
+  <mat-grid-tile [colspan]="esMovil ? 1 : esTablet ? 4 : 1" [rowspan]="1">
     <app-card-habitacion
       color1="#3D63C7"
       color2="#ABC3FF"
       [numero]="10"
       [totalHabitaciones]="10"
-      [texto]="'Total\n Habitaciones'"
     >
+      Total <br />
+      Habitaciones
     </app-card-habitacion>
   </mat-grid-tile>
-  <mat-grid-tile [colspan]="1" [rowspan]="1">
+  <mat-grid-tile [colspan]="esMovil ? 1 : esTablet ? 4 : 1" [rowspan]="1">
     <app-card-habitacion
       class="indicator"
       color1="#61BD5F"
       color2="#B4FFB2"
       [numero]="10"
       [totalHabitaciones]="10"
-      [texto]="'Habitaciones\n Libres'"
     >
-    </app-card-habitacion
-  ></mat-grid-tile>
-  <mat-grid-tile [colspan]="1" [rowspan]="1">
+      Habitaciones <br />
+      Libres
+    </app-card-habitacion></mat-grid-tile
+  >
+  <mat-grid-tile [colspan]="esMovil ? 1 : esTablet ? 4 : 1" [rowspan]="1">
     <app-card-habitacion
       class="indicator"
       color1="#BB4141"
       color2="#FF8787"
       [numero]="10"
       [totalHabitaciones]="10"
-      [texto]="'Habitaciones\n Ocupadas'"
     >
+      Habitaciones <br />
+      Ocupadas
     </app-card-habitacion>
   </mat-grid-tile>
-  <mat-grid-tile [colspan]="1" [rowspan]="1">
+  <mat-grid-tile [colspan]="esMovil ? 1 : esTablet ? 4 : 1" [rowspan]="1">
     <app-card-habitacion
       class="indicator"
       color1="#F19221"
       color2="#FFCF96"
       [numero]="10"
       [totalHabitaciones]="10"
-      [texto]="'Habitaciones\n Reservadas'"
     >
+      Habitaciones <br />
+      Reservadas
     </app-card-habitacion>
   </mat-grid-tile>
-  <mat-grid-tile [colspan]="2" [rowspan]="1">
+  <mat-grid-tile [colspan]="esMovil ? 2 : esTablet ? 8 : 2" [rowspan]="1">
     <app-card-ingresos></app-card-ingresos>
   </mat-grid-tile>
-  <!-- 
-  <mat-grid-tile [colspan]="2" [rowspan]="2">Cards</mat-grid-tile>
-  <mat-grid-tile [colspan]="2" [rowspan]="1">Cards</mat-grid-tile> -->
+  <mat-grid-tile [colspan]="esMovil ? 2 : esTablet ? 6 : 2" [rowspan]="2">
+    <app-card-clientes></app-card-clientes>
+  </mat-grid-tile>
+  <mat-grid-tile
+    [colspan]="esMovil ? 2 : esTablet ? 6 : 2"
+    [rowspan]="esMovil || esTablet ? 2 : 1"
+  >
+    <app-card-stock-bajo></app-card-stock-bajo>
+  </mat-grid-tile>
 </mat-grid-list>

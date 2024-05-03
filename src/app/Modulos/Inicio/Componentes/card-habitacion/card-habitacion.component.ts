@@ -16,7 +16,6 @@ import { LayoutService } from '../../../../Servicios/layout.service';
   styleUrl: './card-habitacion.component.css',
 })
 export class CardHabitacionComponent implements OnChanges {
-  @Input() texto: string = '';
   @Input() color1: string = '';
   @Input() color2: string = '';
   @Input() numero: number = 0;

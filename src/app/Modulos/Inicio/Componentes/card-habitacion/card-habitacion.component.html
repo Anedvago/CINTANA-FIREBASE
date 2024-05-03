@@ -2,7 +2,7 @@
   <mat-card-content>
     <div class="header">
       @if (esMovil) {
-      <span class="numero">
+      <span class="numero" [ngStyle]="{ 'font-size': '35px' }">
         {{ numero }}
       </span>
       }@else {<span
@@ -12,10 +12,10 @@
         bed </span
       >}
 
-      <div class="contenido">{{ texto | titlecase }}</div>
+      <div class="contenido"><ng-content></ng-content></div>
     </div>
     @if(!esMovil){
-    <span class="numero">
+    <span class="numero" [ngStyle]="{ 'font-size': '50px' }">
       {{ numero }}
     </span>
     }
