@@ -1,21 +1,54 @@
 <mat-grid-list
-  [cols]="esMovil ? '1' : esTablet ? '3' : '4'"
-  [rowHeight]="esMovil ? '15vh' : esTablet ? '20vh' : '33vh'"
+  [cols]="esMovil ? '2' : esTablet ? '3' : '4'"
+  [rowHeight]="esMovil ? '20vh' : esTablet ? '20vh' : '33vh'"
 >
-  <mat-grid-tile [colspan]="1" [rowspan]="1"
-    ><app-card-habitacion></app-card-habitacion
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <app-card-habitacion
+      color1="#3D63C7"
+      color2="#ABC3FF"
+      [numero]="10"
+      [totalHabitaciones]="10"
+      [texto]="'Total\n Habitaciones'"
+    >
+    </app-card-habitacion>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <app-card-habitacion
+      class="indicator"
+      color1="#61BD5F"
+      color2="#B4FFB2"
+      [numero]="10"
+      [totalHabitaciones]="10"
+      [texto]="'Habitaciones\n Libres'"
+    >
+    </app-card-habitacion
   ></mat-grid-tile>
-  <mat-grid-tile [colspan]="1" [rowspan]="1"
-    ><app-card-habitacion></app-card-habitacion
-  ></mat-grid-tile>
-  <mat-grid-tile [colspan]="1" [rowspan]="1"
-    ><app-card-habitacion></app-card-habitacion
-  ></mat-grid-tile>
-  <mat-grid-tile [colspan]="1" [rowspan]="1"
-    ><app-card-habitacion></app-card-habitacion
-  ></mat-grid-tile>
-
-  <!-- <mat-grid-tile [colspan]="2" [rowspan]="1">Cards</mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <app-card-habitacion
+      class="indicator"
+      color1="#BB4141"
+      color2="#FF8787"
+      [numero]="10"
+      [totalHabitaciones]="10"
+      [texto]="'Habitaciones\n Ocupadas'"
+    >
+    </app-card-habitacion>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <app-card-habitacion
+      class="indicator"
+      color1="#F19221"
+      color2="#FFCF96"
+      [numero]="10"
+      [totalHabitaciones]="10"
+      [texto]="'Habitaciones\n Reservadas'"
+    >
+    </app-card-habitacion>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <app-card-ingresos></app-card-ingresos>
+  </mat-grid-tile>
+  <!-- 
   <mat-grid-tile [colspan]="2" [rowspan]="2">Cards</mat-grid-tile>
   <mat-grid-tile [colspan]="2" [rowspan]="1">Cards</mat-grid-tile> -->
 </mat-grid-list>

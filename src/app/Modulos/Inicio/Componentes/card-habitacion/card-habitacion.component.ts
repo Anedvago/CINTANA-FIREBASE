@@ -16,12 +16,11 @@ import { LayoutService } from '../../../../Servicios/layout.service';
   styleUrl: './card-habitacion.component.css',
 })
 export class CardHabitacionComponent implements OnChanges {
-  @Input() texto: string = 'Total Habitaciones';
-
-  @Input() color1: string = '#3D63C7';
-  @Input() color2: string = '#ABC3FF';
-  @Input() numero: number = 10;
-  @Input() totalHabitaciones: number = 10;
+  @Input() texto: string = '';
+  @Input() color1: string = '';
+  @Input() color2: string = '';
+  @Input() numero: number = 0;
+  @Input() totalHabitaciones: number = 0;
   porcentaje: number = (this.numero * 100) / this.totalHabitaciones;
   esMovil = this.layoutService.esMovil;
   esTablet = this.layoutService.esTablet;

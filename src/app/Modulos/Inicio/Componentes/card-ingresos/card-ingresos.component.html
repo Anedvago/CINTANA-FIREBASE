@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-content>
+    <span>Ingresos ultimos meses</span>
+    <ngx-charts-bar-vertical
+      class="graphic"
+      [scheme]="colorScheme"
+      [results]="monthsValue"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [view]="view"
+    >
+    </ngx-charts-bar-vertical>
+  </mat-card-content>
+</mat-card>

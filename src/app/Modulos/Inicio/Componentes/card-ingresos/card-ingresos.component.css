@@ -1,0 +1,16 @@
+mat-card {
+  height: 100%;
+  width: 100%;
+}
+
+mat-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+span {
+  width: 100%;
+  text-align: start;
+  font-weight: bold;
+}
