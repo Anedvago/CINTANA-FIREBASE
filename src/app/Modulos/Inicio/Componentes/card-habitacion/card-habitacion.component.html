@@ -1,19 +1,25 @@
 <mat-card>
   <mat-card-content>
     <div class="header">
-      <span
+      @if (esMovil) {
+      <span class="numero">
+        {{ numero }}
+      </span>
+      }@else {<span
         [ngStyle]="{ 'background-color': color2, color: color1 }"
         class="material-icons icono"
       >
-        bed
-      </span>
+        bed </span
+      >}
+
       <div class="contenido">{{ texto | titlecase }}</div>
     </div>
-    <div class="numero">
-      <span>
-        {{ numero }}
-      </span>
-    </div>
+    @if(!esMovil){
+    <span class="numero">
+      {{ numero }}
+    </span>
+    }
+
     <div class="container-barra">
       <div
         class="barra"

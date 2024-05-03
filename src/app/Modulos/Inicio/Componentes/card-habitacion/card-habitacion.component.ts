@@ -7,6 +7,7 @@ import {
   input,
 } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { LayoutService } from '../../../../Servicios/layout.service';
 @Component({
   selector: 'app-card-habitacion',
   standalone: true,
@@ -22,6 +23,9 @@ export class CardHabitacionComponent implements OnChanges {
   @Input() numero: number = 10;
   @Input() totalHabitaciones: number = 10;
   porcentaje: number = (this.numero * 100) / this.totalHabitaciones;
+  esMovil = this.layoutService.esMovil;
+  esTablet = this.layoutService.esTablet;
+  constructor(private layoutService: LayoutService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.porcentaje = (this.numero * 100) / this.totalHabitaciones;
