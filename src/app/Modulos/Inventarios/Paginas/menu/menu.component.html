@@ -1,1 +1,37 @@
-<p>menu works!</p>
+<div class="container">
+  <app-card-opcion
+    [ngClass]="{ movil: esMovil, tablet: esTablet }"
+    (click)="navigateTo('articulos')"
+    img="logo-articulos.png"
+    title="Gestion de articulos"
+  >
+  </app-card-opcion>
+  <app-card-opcion
+    [ngClass]="{ movil: esMovil, tablet: esTablet }"
+    (click)="navigateTo('servicios')"
+    img="logo-servicios.png"
+    title="Gestion de servicios"
+  >
+  </app-card-opcion>
+  <app-card-opcion
+    [ngClass]="{ movil: esMovil, tablet: esTablet }"
+    (click)="navigateTo('categorias')"
+    img="logo-categorias.png"
+    title="Gestion de categorias"
+  >
+  </app-card-opcion>
+  <app-card-opcion
+    [ngClass]="{ movil: esMovil, tablet: esTablet }"
+    (click)="navigateTo('compras')"
+    img="logo-compras.png"
+    title="modulo de documentos de compra"
+  >
+  </app-card-opcion>
+  <app-card-opcion
+    [ngClass]="{ movil: esMovil, tablet: esTablet }"
+    (click)="navigateTo('descargos')"
+    img="logo-bajas.png"
+    title="modulo de documentos de baja"
+  >
+  </app-card-opcion>
+</div>
