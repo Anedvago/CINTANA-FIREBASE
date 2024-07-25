@@ -20,12 +20,14 @@ export class CardHabitacionComponent implements OnChanges {
   @Input() color2: string = '';
   @Input() numero: number = 0;
   @Input() totalHabitaciones: number = 0;
-  porcentaje: number = (this.numero * 100) / this.totalHabitaciones;
+  porcentaje: number = 0;
   esMovil = this.layoutService.esMovil;
   esTablet = this.layoutService.esTablet;
   constructor(private layoutService: LayoutService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.porcentaje = (this.numero * 100) / this.totalHabitaciones;
+    if (!changes['color1'] && !changes['color2']) {
+      this.porcentaje = (this.numero * 100) / this.totalHabitaciones;
+    }
   }
 }

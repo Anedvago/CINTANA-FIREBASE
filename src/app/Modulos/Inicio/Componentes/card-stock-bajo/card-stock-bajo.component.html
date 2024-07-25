@@ -1,3 +1,10 @@
 <mat-card>
-  <mat-card-content>Holas</mat-card-content>
+  <mat-card-content>
+    @if(datosTabla!= undefined){
+    <tabla
+      [columnas]="columnas"
+      [columnasDisplay]="columnas"
+      [datos]="datosTabla"
+    />}
+  </mat-card-content>
 </mat-card>

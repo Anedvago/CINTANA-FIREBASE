@@ -1,1 +1,17 @@
-<p>calendario works!</p>
+<div
+  class="container"
+  [ngClass]="{ 'container-movil': esMovil, 'container-tablet': esTablet }"
+>
+  <button
+    [ngClass]="{ 'btn-movil': esMovil, 'btn-tablet': esTablet }"
+    class="btn btn-azul"
+    mat-raised-button
+  >
+    Registrar reservacion
+  </button>
+  <full-calendar
+    class=".full-calendar"
+    [options]="calendarOptions"
+    [ngClass]="{ 'calendario-movil': esMovil, 'calendario-tablet': esTablet }"
+  ></full-calendar>
+</div>

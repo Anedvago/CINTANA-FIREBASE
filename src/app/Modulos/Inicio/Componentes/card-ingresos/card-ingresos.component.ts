@@ -26,7 +26,7 @@ export class CardIngresosComponent {
   ];
 
   public view: [number, number] = this.esMovil
-    ? [360, 100]
+    ? [360, 80]
     : this.esTablet
     ? [490, 150]
     : [470, 130];

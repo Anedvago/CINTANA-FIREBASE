@@ -8,9 +8,15 @@ mat-card-content {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: 100%;
 }
 span {
   width: 100%;
   text-align: start;
   font-weight: bold;
+}
+ngx-charts-bar-vertical {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
