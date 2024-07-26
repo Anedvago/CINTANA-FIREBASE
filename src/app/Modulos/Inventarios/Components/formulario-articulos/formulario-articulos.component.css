@@ -1,0 +1,39 @@
+form {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+mat-form-field {
+  width: 50%;
+  height: 100%;
+}
+button {
+  border-radius: 0px !important;
+  background-color: blue !important;
+}
+.container-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+  height: 100%;
+}
+
+/* 
+.btn-small {
+  border-radius: 0px !important;
+  background-color: blue !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  padding: 10px;
+}
+.btn-small span {
+  background-color: aqua !important;
+}
+ */

@@ -12,7 +12,14 @@ export const routes: Routes = [
     component: SidebarComponent,
     children: [
       { path: 'inicio', component: InicioComponent },
-      { path: 'inventarios', component: MenuComponent },
+      /*  { path: 'inventarios', component: MenuComponent }, */
+      {
+        path: 'inventarios',
+        loadChildren: () =>
+          import('./Modulos/Inventarios/inventario.routes').then(
+            (m) => m.routes
+          ),
+      },
       { path: 'reservaciones', component: CalendarioComponent },
       { path: 'pasadias', component: CalendarioPasadias },
       { path: 'punto-de-venta', component: PuntoDeVentaComponent },

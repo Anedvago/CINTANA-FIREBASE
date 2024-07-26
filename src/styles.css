@@ -8,18 +8,30 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-.btn {
-  border-radius: 0 !important;
-  padding: 25px 0px !important;
-  width: 100% !important;
+::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra de desplazamiento */
+  height: 8px;
 }
 
-.btn-azul {
-  background-color: #3056d3 !important;
-  color: white !important;
+::-webkit-scrollbar-thumb {
+  background-color: rgb(
+    167,
+    175,
+    182
+  ); /* Color de la barra de desplazamiento */
+  border-radius: 4px; /* Radio de esquina de la barra de desplazamiento */
 }
 
-.btn-azul:disabled {
-  background-color: #6486f7 !important;
-  color: rgb(255, 255, 255) !important;
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(
+    167,
+    175,
+    182
+  ); /* Color de la barra de desplazamiento al pasar el ratón por encima */
+}
+
+/* Personaliza la barra de desplazamiento de la pista */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color de fondo de la pista */
+  border-radius: 4px; /* Radio de esquina de la pista */
 }

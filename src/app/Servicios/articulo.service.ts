@@ -20,4 +20,12 @@ export class ArticuloService {
       .lte('stock', 10);
     return Rooms;
   }
+
+  public async getArticulos(): Promise<any[] | null> {
+    let { data: Rooms, error } = await this.supabaseClient
+      .from('Articles')
+      .select('*')
+      .order('id', { ascending: true });
+    return Rooms;
+  }
 }
