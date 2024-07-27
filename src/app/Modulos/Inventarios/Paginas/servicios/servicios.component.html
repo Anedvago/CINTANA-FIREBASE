@@ -1,1 +1,14 @@
-<p>servicios works!</p>
+<div
+  class="container"
+  [ngClass]="{ 'container-movil-tablet': esMovil == true || esTablet == true }"
+>
+  <app-formulario-articulos
+    formularioPara="SERVICIOS"
+  ></app-formulario-articulos>
+  <tabla
+    [ngClass]="{ 'tabla-movil': esMovil }"
+    [columnas]="columnas"
+    [columnasDisplay]="columnasDisplay"
+    [datos]="serviciosFiltrados"
+  />
+</div>

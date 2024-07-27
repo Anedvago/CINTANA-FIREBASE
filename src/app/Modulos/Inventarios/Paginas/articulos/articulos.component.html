@@ -2,7 +2,9 @@
   class="container"
   [ngClass]="{ 'container-movil-tablet': esMovil == true || esTablet == true }"
 >
-  <app-formulario-articulos></app-formulario-articulos>
+  <app-formulario-articulos
+    formularioPara="ARTICULOS"
+  ></app-formulario-articulos>
   <tabla
     [ngClass]="{ 'tabla-movil': esMovil }"
     [columnas]="columnas"
