@@ -1,6 +1,10 @@
-<div class="container">
+<div
+  class="container"
+  [ngClass]="{ 'container-movil-tablet': esMovil == true || esTablet == true }"
+>
   <app-formulario-articulos></app-formulario-articulos>
   <tabla
+    [ngClass]="{ 'tabla-movil': esMovil }"
     [columnas]="columnas"
     [columnasDisplay]="columnasDisplay"
     [datos]="articulosFiltrados"

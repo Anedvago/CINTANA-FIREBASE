@@ -1,41 +1,50 @@
-<form>
-  <mat-form-field subscriptSizing="dynamic" class="no-hint-space">
+<form [ngClass]="{ 'formulario-movil': esMovil }">
+  <mat-form-field
+    subscriptSizing="dynamic"
+    [ngClass]="{ 'form-tablet': esTablet, 'form-movil': esMovil }"
+    class="no-hint-space"
+  >
     <mat-label>Nombre</mat-label>
     <input matInput />
   </mat-form-field>
-  <div class="container-btn">
-    <div class="example-button-container">
+  <div
+    class="container-btn"
+    [ngClass]="{ 'botones-tablet': esTablet, 'botones-movil': esMovil }"
+  >
+    <div [ngClass]="{ 'boton-movil-container': esMovil }">
+      @if(esMovil){
+      <button mat-fab class="boton-movil">
+        <mat-icon>search</mat-icon>
+      </button>
+      }@else{
       <button mat-fab extended>
         <mat-icon>search</mat-icon>
         Buscar
       </button>
+      }
     </div>
-    <div class="example-button-container">
+    <div [ngClass]="{ 'boton-movil-container': esMovil }">
+      @if(esMovil){
+      <button mat-fab class="boton-movil">
+        <mat-icon>delete_outline</mat-icon>
+      </button>
+      }@else {
       <button mat-fab extended>
         <mat-icon>delete_outline</mat-icon>
         Quitar filtros
       </button>
+      }
     </div>
-    <div class="example-button-container">
+    <div [ngClass]="{ 'boton-movil-container': esMovil }">
+      @if(esMovil){
+      <button mat-fab class="boton-movil">
+        <mat-icon>playlist_add</mat-icon>
+      </button>
+      }@else{
       <button mat-fab extended>
         <mat-icon>playlist_add</mat-icon>
-        Crear artículo
-      </button>
+        Crear artículo</button
+      >}
     </div>
   </div>
-  <!-- <div class="container-btn">
-    <button mat-fab extended class="btn-small">
-      <span class="material-symbols-outlined"> search </span>
-      <span>Buscar</span>
-    </button>
-    <button mat-mini-fab class="btn-small">
-      <span class="material-symbols-outlined"> numbers </span>
-    </button>
-    <button mat-mini-fab class="btn-small">
-      <span class="material-symbols-outlined"> barcode </span>
-    </button>
-    <button mat-mini-fab class="btn-small">
-      <span class="material-symbols-outlined"> add </span>
-    </button>
-  </div> -->
 </form>
