@@ -1,1 +1,36 @@
-<p>categorias works!</p>
+<div
+  class="container"
+  [ngClass]="{ 'container-movil-tablet': esMovil == true || esTablet == true }"
+>
+  <div class="header">
+    <button mat-fab extended class="btn">
+      <mat-icon>playlist_add</mat-icon>
+      Crear categoria
+    </button>
+  </div>
+  <div
+    class="content"
+    [ngClass]="{ 'content-movil': esMovil, 'content-tablet': esTablet }"
+  >
+    <div
+      class="columna"
+      [ngClass]="{ 'columna-movil': esMovil, 'columna-tablet': esTablet }"
+    >
+      <h3>Articulos</h3>
+      <hr />
+      <app-arbol-categoria
+        [datos]="categoriasDeArticulos"
+      ></app-arbol-categoria>
+    </div>
+    <div
+      class="columna"
+      [ngClass]="{ 'columna-movil': esMovil, 'columna-tablet': esTablet }"
+    >
+      <h3>Servicios</h3>
+      <hr />
+      <app-arbol-categoria
+        [datos]="categoriasDeServicios"
+      ></app-arbol-categoria>
+    </div>
+  </div>
+</div>

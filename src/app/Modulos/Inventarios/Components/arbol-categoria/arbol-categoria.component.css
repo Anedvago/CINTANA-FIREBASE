@@ -1,0 +1,20 @@
+.botones-de-accion {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 30px;
+}
+.btn-accion {
+  background-color: transparent !important;
+  margin: 0 2px;
+  box-shadow: none;
+}
+.btn-accion:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.icon-delete {
+  color: red;
+}
+.icon-edit {
+  color: rgb(131, 131, 224);
+}
