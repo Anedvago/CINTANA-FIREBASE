@@ -4,6 +4,8 @@ import { ListaDocumentosComponent } from '../../Components/lista-documentos/list
 import { DetallesDocumentoComponent } from '../../Components/detalles-documento/detalles-documento.component';
 import { TotalesDocumentoComponent } from '../../Components/totales-documento/totales-documento.component';
 import { CompraService } from '../../../../Servicios/compra.service';
+import { LayoutService } from '../../../../Servicios/layout.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-compras',
@@ -13,6 +15,7 @@ import { CompraService } from '../../../../Servicios/compra.service';
     ListaDocumentosComponent,
     DetallesDocumentoComponent,
     TotalesDocumentoComponent,
+    NgClass,
   ],
   templateUrl: './compras.component.html',
   styleUrl: './compras.component.css',
@@ -24,7 +27,12 @@ export class ComprasComponent implements OnInit {
   listaDeFacturasFiltradas: any[] = [];
   detallesDeLaFactura: any[] = [];
   totalesFactura: any[] = [];
-  constructor(private compraService: CompraService) {}
+  esMovil = this.layoutService.esMovil;
+  esTablet = this.layoutService.esTablet;
+  constructor(
+    private layoutService: LayoutService,
+    private compraService: CompraService
+  ) {}
   ngOnInit(): void {
     this.getFacturas();
   }

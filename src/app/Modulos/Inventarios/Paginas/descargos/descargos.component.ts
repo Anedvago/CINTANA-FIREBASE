@@ -5,6 +5,8 @@ import { DetallesDocumentoComponent } from '../../Components/detalles-documento/
 import { TotalesDocumentoComponent } from '../../Components/totales-documento/totales-documento.component';
 import { CompraService } from '../../../../Servicios/compra.service';
 import { DescargoService } from '../../../../Servicios/descargo.service';
+import { LayoutService } from '../../../../Servicios/layout.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-descargos',
@@ -14,6 +16,7 @@ import { DescargoService } from '../../../../Servicios/descargo.service';
     ListaDocumentosComponent,
     DetallesDocumentoComponent,
     TotalesDocumentoComponent,
+    NgClass,
   ],
   templateUrl: './descargos.component.html',
   styleUrl: './descargos.component.css',
@@ -25,7 +28,12 @@ export class DescargosComponent {
   listaDeFacturasFiltradas: any[] = [];
   detallesDeLaFactura: any[] = [];
   totalesFactura: any[] = [];
-  constructor(private descargoService: DescargoService) {}
+  esMovil = this.layoutService.esMovil;
+  esTablet = this.layoutService.esTablet;
+  constructor(
+    private layoutService: LayoutService,
+    private descargoService: DescargoService
+  ) {}
   ngOnInit(): void {
     this.getFacturas();
   }

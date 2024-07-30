@@ -1,15 +1,20 @@
-<div class="container">
+<div class="container" [ngClass]="{ 'container-tablet': esTablet }">
   <app-formulario-documentos></app-formulario-documentos>
   <div class="contenido">
     <app-lista-documentos
+      [ngClass]="{ 'lista-tablet': esTablet }"
       [datos]="listaDeFacturasFiltradas"
       (seleccionDeFactura)="seleccionarFactura($event)"
     ></app-lista-documentos>
-    <div class="documento">
+    <div class="documento" [ngClass]="{ 'documento-tablet': esTablet }">
       <app-detalles-documento
+        [ngClass]="{ 'detalles-tablet': esTablet }"
         [datos]="detallesDeLaFactura"
       ></app-detalles-documento>
-      <app-totales-documento [datos]="totalesFactura"></app-totales-documento>
+      <app-totales-documento
+        [ngClass]="{ 'totales-tablet': esTablet }"
+        [datos]="totalesFactura"
+      ></app-totales-documento>
     </div>
   </div>
 </div>

@@ -7,6 +7,9 @@
   align-items: center;
   overflow: hidden;
 }
+.container-tablet {
+  height: 93vh;
+}
 app-formulario-documentos {
   width: 95%;
   height: 10%;
@@ -17,6 +20,12 @@ app-formulario-documentos {
   display: flex;
   justify-content: space-between;
 }
+app-lista-documentos {
+  width: 20%;
+}
+.lista-tablet {
+  width: 30%;
+}
 .documento {
   width: 79%;
   height: 100%;
@@ -24,13 +33,19 @@ app-formulario-documentos {
   justify-content: space-between;
   flex-direction: column;
 }
-app-lista-documentos {
-  width: 20%;
+.documento-tablet {
+  width: 69%;
 }
 app-detalles-documento {
   width: 100%;
   height: 76%;
 }
+.detalles-tablet {
+  height: 83%;
+}
 app-totales-documento {
   height: 22%;
+}
+.totales-tablet {
+  height: 15%;
 }
