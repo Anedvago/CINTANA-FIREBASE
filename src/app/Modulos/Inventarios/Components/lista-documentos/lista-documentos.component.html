@@ -1,0 +1,9 @@
+<div class="container">
+  <tabla
+    [active]="facturaSeleccionada?.id"
+    (clickTr)="seleccionarFactura($event)"
+    [columnas]="columnas"
+    [columnasDisplay]="columnasDisplay"
+    [datos]="datosFiltrados"
+  ></tabla>
+</div>

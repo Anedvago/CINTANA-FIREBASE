@@ -1,1 +1,16 @@
-<p>compras works!</p>
+<div class="container">
+  <app-formulario-documentos></app-formulario-documentos>
+  <div class="contenido">
+    <app-lista-documentos
+      (seleccionDeFactura)="seleccionarFactura($event)"
+    ></app-lista-documentos>
+    <div class="documento">
+      <app-detalles-documento
+        [facturaSeleccionada]="facturaSeleccionada"
+      ></app-detalles-documento>
+      <app-totales-documento
+        [facturaSeleccionada]="facturaSeleccionada"
+      ></app-totales-documento>
+    </div>
+  </div>
+</div>
