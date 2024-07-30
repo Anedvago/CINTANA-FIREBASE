@@ -15,7 +15,7 @@ import { CompraService } from '../../../../Servicios/compra.service';
   templateUrl: './detalles-documento.component.html',
   styleUrl: './detalles-documento.component.css',
 })
-export class DetallesDocumentoComponent implements OnChanges {
+export class DetallesDocumentoComponent {
   columnas = [
     'reference',
     'description',
@@ -32,19 +32,5 @@ export class DetallesDocumentoComponent implements OnChanges {
     'Descuento',
     'Total',
   ];
-  datos: any[] = [];
-  @Input() facturaSeleccionada: any;
-  constructor(private compraService: CompraService) {}
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.facturaSeleccionada != undefined) {
-      this.getDetallesDeFacturaPorId();
-    }
-  }
-  getDetallesDeFacturaPorId() {
-    this.compraService
-      .getDetallesDeFactura(this.facturaSeleccionada.id)
-      .then((data) => {
-        this.datos = data!;
-      });
-  }
+  @Input() datos: any[] = [];
 }

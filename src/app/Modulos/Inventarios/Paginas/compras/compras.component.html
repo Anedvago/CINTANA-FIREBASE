@@ -2,15 +2,14 @@
   <app-formulario-documentos></app-formulario-documentos>
   <div class="contenido">
     <app-lista-documentos
+      [datos]="listaDeFacturasFiltradas"
       (seleccionDeFactura)="seleccionarFactura($event)"
     ></app-lista-documentos>
     <div class="documento">
       <app-detalles-documento
-        [facturaSeleccionada]="facturaSeleccionada"
+        [datos]="detallesDeLaFactura"
       ></app-detalles-documento>
-      <app-totales-documento
-        [facturaSeleccionada]="facturaSeleccionada"
-      ></app-totales-documento>
+      <app-totales-documento [datos]="totalesFactura"></app-totales-documento>
     </div>
   </div>
 </div>

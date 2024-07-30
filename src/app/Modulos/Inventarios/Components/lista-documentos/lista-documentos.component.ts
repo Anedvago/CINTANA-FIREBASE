@@ -1,4 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { TableComponent } from '../../../../Components/table/table.component';
 import { CompraService } from '../../../../Servicios/compra.service';
 
@@ -9,27 +17,14 @@ import { CompraService } from '../../../../Servicios/compra.service';
   templateUrl: './lista-documentos.component.html',
   styleUrl: './lista-documentos.component.css',
 })
-export class ListaDocumentosComponent implements OnInit {
+export class ListaDocumentosComponent implements OnChanges {
   columnas = ['date', 'id'];
   columnasDisplay = ['Fecha', 'Num'];
-  datos: any[] = [];
-  datosFiltrados: any[] = [];
+  @Input() datos: any[] = [];
   facturaSeleccionada: any;
   @Output() seleccionDeFactura = new EventEmitter<any>();
-  constructor(private compraService: CompraService) {}
-  ngOnInit(): void {
-    this.getFacturas();
-  }
-  getFacturas() {
-    this.compraService.getCabeceras().then((data) => {
-      this.datos = data!.map(function (obj) {
-        return { id: obj.id, date: obj.date.substring(0, 10) };
-      });
-      this.datosFiltrados = data!.map(function (obj) {
-        return { id: obj.id, date: obj.date.substring(0, 10) };
-      });
-      this.seleccionarFactura(this.datosFiltrados[0]);
-    });
+  ngOnChanges(changes: SimpleChanges): void {
+    this.facturaSeleccionada = this.datos[0];
   }
   seleccionarFactura(factura: any) {
     this.facturaSeleccionada = factura;
