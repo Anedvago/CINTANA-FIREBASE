@@ -45,7 +45,6 @@ export class ComprasComponent implements OnInit {
     this.totalesFactura = this.facturasDeCompra!.filter((elem) => {
       return elem.id == this.facturaSeleccionada.id;
     });
-    console.log(this.totalesFactura);
   }
 
   getFacturas() {

@@ -8,6 +8,7 @@
   <div class="contenido" [ngClass]="{ 'contenido-movil': esMovil }">
     <app-lista-documentos
       [ngClass]="{ 'lista-tablet': esTablet, 'lista-movil': esMovil }"
+      tipo="descargo"
       [datos]="listaDeFacturasFiltradas"
       (seleccionDeFactura)="seleccionarFactura($event)"
     ></app-lista-documentos>

@@ -9,6 +9,7 @@
     <app-lista-documentos
       [ngClass]="{ 'lista-tablet': esTablet, 'lista-movil': esMovil }"
       [datos]="listaDeFacturasFiltradas"
+      tipo="compra"
       (seleccionDeFactura)="seleccionarFactura($event)"
     ></app-lista-documentos>
     @if(!esMovil){

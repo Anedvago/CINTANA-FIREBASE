@@ -5,6 +5,7 @@ import { ServiciosComponent } from './Paginas/servicios/servicios.component';
 import { CategoriasComponent } from './Paginas/categorias/categorias.component';
 import { ComprasComponent } from './Paginas/compras/compras.component';
 import { DescargosComponent } from './Paginas/descargos/descargos.component';
+import { DetalleDocumentoMovilComponent } from './Paginas/detalle-documento-movil/detalle-documento-movil.component';
 
 export const routes: Routes = [
   {
@@ -33,6 +34,10 @@ export const routes: Routes = [
       {
         path: 'descargos',
         component: DescargosComponent,
+      },
+      {
+        path: 'detalle-documento/:tipo/:id',
+        component: DetalleDocumentoMovilComponent,
       },
     ],
   },
