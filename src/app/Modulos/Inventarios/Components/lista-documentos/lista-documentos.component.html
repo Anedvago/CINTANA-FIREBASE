@@ -1,6 +1,6 @@
 <div class="container">
   <tabla
-    [active]="facturaSeleccionada?.id"
+    [active]="esMovil ? '' : facturaSeleccionada?.id"
     (clickTr)="seleccionarFactura($event)"
     [columnas]="columnas"
     [columnasDisplay]="columnasDisplay"

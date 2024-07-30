@@ -10,9 +10,15 @@
 .container-tablet {
   height: 93vh;
 }
+.container-movil {
+  height: 93vh;
+}
 app-formulario-documentos {
   width: 95%;
   height: 10%;
+}
+.formulario-movil {
+  height: 20%;
 }
 .contenido {
   width: 95%;
@@ -20,11 +26,17 @@ app-formulario-documentos {
   display: flex;
   justify-content: space-between;
 }
+.contenido-movil {
+  height: 70%;
+}
 app-lista-documentos {
   width: 20%;
 }
 .lista-tablet {
   width: 30%;
+}
+.lista-movil {
+  width: 100%;
 }
 .documento {
   width: 79%;

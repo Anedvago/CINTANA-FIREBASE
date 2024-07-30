@@ -1,11 +1,17 @@
-<div class="container" [ngClass]="{ 'container-tablet': esTablet }">
-  <app-formulario-documentos></app-formulario-documentos>
-  <div class="contenido">
+<div
+  class="container"
+  [ngClass]="{ 'container-tablet': esTablet, 'container-movil': esMovil }"
+>
+  <app-formulario-documentos
+    [ngClass]="{ 'formulario-movil': esMovil }"
+  ></app-formulario-documentos>
+  <div class="contenido" [ngClass]="{ 'contenido-movil': esMovil }">
     <app-lista-documentos
-      [ngClass]="{ 'lista-tablet': esTablet }"
+      [ngClass]="{ 'lista-tablet': esTablet, 'lista-movil': esMovil }"
       [datos]="listaDeFacturasFiltradas"
       (seleccionDeFactura)="seleccionarFactura($event)"
     ></app-lista-documentos>
+    @if(!esMovil){
     <div class="documento" [ngClass]="{ 'documento-tablet': esTablet }">
       <app-detalles-documento
         [ngClass]="{ 'detalles-tablet': esTablet }"
@@ -16,5 +22,6 @@
         [datos]="totalesFactura"
       ></app-totales-documento>
     </div>
+    }
   </div>
 </div>

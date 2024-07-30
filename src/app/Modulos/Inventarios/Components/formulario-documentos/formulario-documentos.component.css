@@ -11,7 +11,38 @@ form {
   align-items: center;
   justify-content: space-evenly;
 }
+.form-movil {
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
 button {
   border-radius: 0px !important;
   background-color: blue !important;
+}
+mat-form-field {
+  width: 48%;
+}
+.inputs {
+  display: flex;
+  justify-content: space-evenly;
+  width: 70%;
+}
+.botones {
+  width: 30%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.inputs-tablet {
+  width: 65%;
+}
+.botones-tablet {
+  width: 35%;
+}
+.inputs-movil {
+  width: 100%;
+}
+.botones-movil {
+  width: 100%;
 }
