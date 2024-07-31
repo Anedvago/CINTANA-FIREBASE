@@ -41,4 +41,32 @@ export class FechaService {
 
     return tomorrow;
   }
+
+  convertirFecha(fechaString: string): string {
+    const fecha = new Date(fechaString);
+
+    const año = fecha.getFullYear();
+    const mes = ('0' + (fecha.getMonth() + 1)).slice(-2);
+    const día = ('0' + fecha.getDate()).slice(-2);
+    const horas = ('0' + fecha.getHours()).slice(-2);
+    const minutos = ('0' + fecha.getMinutes()).slice(-2);
+    const segundos = ('0' + fecha.getSeconds()).slice(-2);
+
+    return `${año}-${mes}-${día} ${horas}:${minutos}:${segundos}`;
+  }
+  convertirFechaReversa(fechaString: string): string {
+    const [fecha, hora] = fechaString.split(' ');
+    const [año, mes, día] = fecha.split('-');
+    const [horas, minutos, segundos] = hora.split(':');
+
+    const fechaObj = new Date(
+      +año,
+      +mes - 1,
+      +día,
+      +horas,
+      +minutos,
+      +segundos
+    );
+    return fechaObj.toString(); // Convierte a formato Wed Jul 31 2024 00:00:00 GMT-0500 (hora estándar de Colombia)
+  }
 }

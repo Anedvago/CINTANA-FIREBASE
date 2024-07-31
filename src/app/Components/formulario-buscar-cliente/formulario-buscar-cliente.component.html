@@ -1,0 +1,42 @@
+<div class="container">
+  <form [formGroup]="formulario">
+    <mat-form-field>
+      <mat-label>Tipo identificación</mat-label>
+      <mat-select formControlName="tipoIdentificacion">
+        @for (tipo of tiposDeIdentificacion; track tipo) {
+        <mat-option [value]="tipo.valor">
+          {{ tipo.nombre | titlecase }} </mat-option
+        >}
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Identificación</mat-label>
+      <input matInput formControlName="identificacion" />
+    </mat-form-field>
+    @if(clientes != undefined){
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Telefono</mat-label>
+      <input formControlName="telefono" matInput />
+    </mat-form-field>
+
+    } @if(clientes != undefined && clientes.length == 0){
+    <div class="container-btn" (click)="crearCliente()">
+      <button mat-fab extended>
+        <mat-icon>playlist_add</mat-icon>
+        Crear Cliente
+      </button>
+    </div>
+    }@else {
+    <div class="container-btn">
+      <button mat-fab extended (click)="getCliente()">
+        <mat-icon>search</mat-icon>
+        Buscar Cliente
+      </button>
+    </div>
+    }
+  </form>
+</div>

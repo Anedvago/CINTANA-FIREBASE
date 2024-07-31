@@ -18,6 +18,15 @@ export class ClienteService {
     this.supabaseClient = this.supabaseService.getSupabaseClient();
   }
 
+  async getClientePorIdentificacion(tipo: string, identificacion: string) {
+    let { data: Customers } = await this.supabaseClient
+      .from('Customers')
+      .select('*')
+      .eq('typeIdentification', tipo)
+      .eq('identification', identificacion);
+    return Customers;
+  }
+
   public getClientesEnTransito() {
     const changes = new Subject();
     this.reservaService.detectarCambiosEnReservas().subscribe(() => {
@@ -62,5 +71,25 @@ export class ClienteService {
       })
     );
     return clients;
+  }
+
+  public async crearCliente(
+    tipoId: string,
+    identificacion: string,
+    nombre: string,
+    telefono: string
+  ) {
+    const { data, error } = await this.supabaseClient
+      .from('Customers')
+      .insert([
+        {
+          typeIdentification: tipoId,
+          identification: identificacion,
+          name: nombre,
+          phone: telefono,
+        },
+      ])
+      .select();
+    return data;
   }
 }

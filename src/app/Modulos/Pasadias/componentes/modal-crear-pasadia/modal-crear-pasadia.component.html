@@ -1,0 +1,13 @@
+<div class="container">
+  <app-formulario-buscar-cliente
+    class="formulario-clientes"
+    (clienteObtenido)="obtenerCliente($event)"
+  ></app-formulario-buscar-cliente>
+  <mat-card class="demo-inline-calendar-card">
+    <mat-calendar [(selected)]="fechaSeleccionada"></mat-calendar>
+    <button mat-fab extended class="btn" (click)="registrarPasadia()">
+      <mat-icon>playlist_add</mat-icon>
+      Registrar Pasadia
+    </button>
+  </mat-card>
+</div>
