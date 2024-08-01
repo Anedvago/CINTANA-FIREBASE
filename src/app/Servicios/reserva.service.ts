@@ -43,11 +43,27 @@ export class ReservaService {
     this.detectarCambiosEnReservas().subscribe(() => {
       this.supabaseClient
         .from('Bookings')
-        .select('*,Customers (name), Rooms (name,color)')
+        .select('*,Customers (*), Rooms (name,color)')
         .then((data) => {
           changes.next(data.data);
         });
     });
     return changes.asObservable();
+  }
+
+  public async modificarReservacion(reserva: any, id: number) {
+    const { data, error } = await this.supabaseClient
+      .from('Bookings')
+      .update([reserva])
+      .eq('id', id)
+      .select();
+    return data;
+  }
+  public async eliminarReservation(id: number) {
+    const { data: Reservation, error } = await this.supabaseClient
+      .from('Bookings')
+      .delete()
+      .eq('id', id);
+    return Reservation;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,8 +37,11 @@ export class FormularioDatosReservaComponent implements OnInit {
   habitaciones: any[] = [];
   formularioReserva!: FormGroup;
   formularioPago!: FormGroup;
+  @Input() reserva: any;
   public tiposDePago = ['EFECTIVO', 'TRANSFERENCIA', 'DATAFONO'];
   @Output() registraReserva = new EventEmitter<any>();
+  @Output() eliminaReserva = new EventEmitter<any>();
+  @Output() modificaReserva = new EventEmitter<any>();
   constructor(
     private habitacionService: HabitacionService,
     private fb: FormBuilder,
@@ -46,7 +49,11 @@ export class FormularioDatosReservaComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.obtenerHabitaciones();
-    this.inicializarFormulario();
+    if (this.reserva != undefined) {
+      this.inicializarFormularioConReserva();
+    } else {
+      this.inicializarFormulario();
+    }
   }
 
   obtenerHabitaciones() {
@@ -70,6 +77,27 @@ export class FormularioDatosReservaComponent implements OnInit {
       totalCancelado: [],
     });
   }
+
+  inicializarFormularioConReserva() {
+    this.formularioReserva = this.fb.group({
+      fechaInicial: [this.reserva.start, Validators.required],
+      horaEntrada: [
+        this.reserva.start.slice(-8).slice(0, 5),
+        Validators.required,
+      ],
+      fechaFinal: [this.reserva.end, Validators.required],
+      horaSalida: [this.reserva.end.slice(-8).slice(0, 5), Validators.required],
+      adultos: [this.reserva.numberOfAdults],
+      niños: [this.reserva.numberOfChilds],
+      habitacion: [this.reserva.room, Validators.required],
+    });
+    this.formularioPago = this.fb.group({
+      metodoDePago: [this.reserva.wayToPay, Validators.required],
+      totalAPagar: [this.reserva.total],
+      totalCancelado: [this.reserva.paid],
+    });
+  }
+
   calcularTotalAPagar() {
     const adultos = this.formularioReserva.get('adultos')!.value;
     const niños = this.formularioReserva.get('niños')!.value;
@@ -86,10 +114,6 @@ export class FormularioDatosReservaComponent implements OnInit {
       ((adultos != undefined && adultos > 0) ||
         (niños != undefined && niños > 0))
     ) {
-      console.log('Dias a cobrar = ' + dias);
-      total = dias * (80000 * adultos + 40000 * niños);
-      console.log('Metodo = ' + this.formularioPago.get('metodoDePago')!.value);
-
       if (metodoDePago) {
         total = total * 1.05;
       }
@@ -133,6 +157,34 @@ export class FormularioDatosReservaComponent implements OnInit {
         metodoDePago: this.formularioPago.get('metodoDePago')!.value,
         totalAPagar: this.formularioPago.get('totalAPagar')!.value,
         totalCancelado: this.formularioPago.get('totalCancelado')!.value,
+      });
+    } else {
+      this.alertaService.error('Formulario invalido');
+    }
+  }
+  eliminarReserva() {
+    this.eliminaReserva.emit(this.reserva.id);
+  }
+  modificarReserva() {
+    const adultos = this.formularioReserva.get('adultos')!.value;
+    const niños = this.formularioReserva.get('niños')!.value;
+    if (
+      this.formularioReserva.valid &&
+      (adultos > 0 || niños > 0) &&
+      this.formularioPago.valid
+    ) {
+      this.modificaReserva.emit({
+        fechaInicial: this.formularioReserva.get('fechaInicial')!.value,
+        horaEntrada: this.formularioReserva.get('horaEntrada')!.value,
+        fechaFinal: this.formularioReserva.get('fechaFinal')!.value,
+        horaSalida: this.formularioReserva.get('horaSalida')!.value,
+        adultos: adultos,
+        niños: niños,
+        habitacion: this.formularioReserva.get('habitacion')!.value,
+        metodoDePago: this.formularioPago.get('metodoDePago')!.value,
+        totalAPagar: this.formularioPago.get('totalAPagar')!.value,
+        totalCancelado: this.formularioPago.get('totalCancelado')!.value,
+        id: this.reserva.id,
       });
     } else {
       this.alertaService.error('Formulario invalido');

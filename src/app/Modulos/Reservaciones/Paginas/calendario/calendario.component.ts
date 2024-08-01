@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalCrearReservaComponent } from '../../Componentes/modal-crear-reserva/modal-crear-reserva.component';
 import { ReservaService } from '../../../../Servicios/reserva.service';
+import { ClienteService } from '../../../../Servicios/cliente.service';
 @Component({
   selector: 'app-calendario',
   standalone: true,
@@ -31,7 +32,7 @@ export class CalendarioComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     initialView: this.esMovil ? 'timeGridDay' : 'dayGridMonth',
     plugins: [dayGridPlugin, timeGridPlugin],
-    /* eventClick: this.click.bind(this), */
+    eventClick: this.modificarReserva.bind(this),
     headerToolbar: {
       start: this.esMovil ? '' : 'dayGridMonth,timeGridWeek,timeGridDay,today',
       center: 'title',
@@ -45,10 +46,11 @@ export class CalendarioComponent implements OnInit {
       meridiem: true,
     },
   };
-
+  cliente: any;
   constructor(
     private layoutservice: LayoutService,
-    private reservaService: ReservaService
+    private reservaService: ReservaService,
+    private clienteService: ClienteService
   ) {}
   ngOnInit(): void {
     this.getReservaciones();
@@ -62,6 +64,17 @@ export class CalendarioComponent implements OnInit {
   registrarReserva() {
     this.dialog.open(ModalCrearReservaComponent);
   }
+  modificarReserva(reserva: any) {
+    this.dialog.open(ModalCrearReservaComponent, {
+      data: this.reservaciones.filter((elem) => elem.id == reserva.event.id)[0],
+    });
+  }
+  obtenerClientePorId(idCliente: number) {
+    this.clienteService.getClientePorId(idCliente).then((data) => {
+      this.cliente = data![0];
+      console.log(this.cliente);
+    });
+  }
   construirReservaciones(datosReserva: any) {
     return datosReserva!.map((elem: any) => {
       return {
@@ -70,7 +83,7 @@ export class CalendarioComponent implements OnInit {
         start: elem.start,
         end: elem.end,
         color: elem.Rooms.color,
-        customer: elem.customer,
+        customer: elem.Customers,
         numberOfAdults: elem.numberOfAdults,
         numberOfChilds: elem.numberOfChilds,
         room: elem.room,

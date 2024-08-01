@@ -92,4 +92,12 @@ export class ClienteService {
       .select();
     return data;
   }
+
+  public async getClientePorId(id: number) {
+    let { data: Customers } = await this.supabaseClient
+      .from('Customers')
+      .select('*')
+      .eq('id', id);
+    return Customers;
+  }
 }

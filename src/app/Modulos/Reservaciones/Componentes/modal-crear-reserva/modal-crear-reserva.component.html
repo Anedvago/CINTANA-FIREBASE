@@ -5,6 +5,9 @@
     (clienteObtenido)="obtenerCliente($event)"
   ></app-formulario-buscar-cliente>
   <app-formulario-datos-reserva
+    [reserva]="reserva"
     (registraReserva)="registrarReserva($event)"
+    (eliminaReserva)="eliminarReserva($event)"
+    (modificaReserva)="modificarReserva($event)"
   ></app-formulario-datos-reserva>
 </div>

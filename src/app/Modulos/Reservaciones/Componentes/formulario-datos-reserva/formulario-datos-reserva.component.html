@@ -94,9 +94,31 @@
       </mat-form-field>
     </form>
   </div>
-
+  @if(reserva != undefined){
+  <div class="botonera">
+    <button
+      mat-fab
+      extended
+      class="btn btn btn-eliminar"
+      (click)="eliminarReserva()"
+    >
+      <mat-icon>delete</mat-icon>
+      Eliminar Reserva
+    </button>
+    <button
+      mat-fab
+      extended
+      class="btn btn btn-guardar"
+      (click)="modificarReserva()"
+    >
+      <mat-icon>save</mat-icon>
+      Guardar Reserva
+    </button>
+  </div>
+  }@else{
   <button mat-fab extended class="btn" (click)="registrarReserva()">
     <mat-icon>playlist_add</mat-icon>
     Registrar Reserva
   </button>
+  }
 </div>
