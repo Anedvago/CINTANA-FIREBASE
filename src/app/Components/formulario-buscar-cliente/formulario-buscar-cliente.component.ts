@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -27,6 +27,7 @@ import { AlertaService } from '../../Servicios/alerta.service';
 export class FormularioBuscarClienteComponent implements OnInit {
   formulario!: FormGroup;
   clientes: any;
+  @Input() cliente: any;
   @Output() clienteObtenido = new EventEmitter<any>();
   public tiposDeIdentificacion = [
     { nombre: 'CÉDULA DE CIUDADANÍA', valor: 'CC' },
@@ -41,7 +42,12 @@ export class FormularioBuscarClienteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.inicializarFormulario();
+    if (this.cliente != undefined) {
+      this.clientes = [this.cliente];
+      this.inicializarFormularioConCliente();
+    } else {
+      this.inicializarFormulario();
+    }
   }
 
   inicializarFormulario() {
@@ -50,6 +56,14 @@ export class FormularioBuscarClienteComponent implements OnInit {
       identificacion: [],
       nombre: [],
       telefono: [],
+    });
+  }
+  inicializarFormularioConCliente() {
+    this.formulario = this.fb.group({
+      tipoIdentificacion: [this.cliente.typeIdentification],
+      identificacion: [this.cliente.identification],
+      nombre: [this.cliente.name],
+      telefono: [this.cliente.phone],
     });
   }
 

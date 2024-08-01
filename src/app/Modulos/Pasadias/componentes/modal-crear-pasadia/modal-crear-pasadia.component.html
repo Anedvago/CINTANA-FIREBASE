@@ -1,13 +1,39 @@
 <div class="container">
   <app-formulario-buscar-cliente
+    [cliente]="cliente"
     class="formulario-clientes"
     (clienteObtenido)="obtenerCliente($event)"
   ></app-formulario-buscar-cliente>
   <mat-card class="demo-inline-calendar-card">
     <mat-calendar [(selected)]="fechaSeleccionada"></mat-calendar>
+
+    @if(pasadia != undefined){
+
+    <div class="botonera">
+      <button
+        mat-fab
+        extended
+        class="btn btn-eliminar"
+        (click)="eliminarPasadia()"
+      >
+        <mat-icon>delete</mat-icon>
+        Eliminar
+      </button>
+      <button
+        mat-fab
+        extended
+        class="btn btn-guardar"
+        (click)="modificarPasadia()"
+      >
+        <mat-icon>save</mat-icon>
+        Guardar
+      </button>
+    </div>
+    }@else{
     <button mat-fab extended class="btn" (click)="registrarPasadia()">
       <mat-icon>playlist_add</mat-icon>
       Registrar Pasadia
     </button>
+    }
   </mat-card>
 </div>

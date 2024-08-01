@@ -41,26 +41,26 @@ export class CalendarioComponent implements OnInit {
     displayEventTime: false,
   };
   readonly dialog = inject(MatDialog);
+  pasadias: any[] = [];
   constructor(
     private layoutservice: LayoutService,
-    private pasadiaService: PasadiaService,
-    private alertaService: AlertaService
+    private pasadiaService: PasadiaService
   ) {}
   ngOnInit(): void {
     this.obtenerPasadias();
   }
   regitrarPasadia() {
-    /* const dialogRef =  */ this.dialog.open(ModalCrearPasadiaComponent);
-
-    /* dialogRef.afterClosed().subscribe((result) => {}); */
-  }
-  modificarPasadia() {
     this.dialog.open(ModalCrearPasadiaComponent);
+  }
+  modificarPasadia(pasadia: any) {
+    this.dialog.open(ModalCrearPasadiaComponent, {
+      data: this.pasadias.filter((elem) => elem.id == pasadia.event.id)[0],
+    });
   }
 
   obtenerPasadias() {
     this.pasadiaService.obtenerPasadias().subscribe((data: any) => {
-      console.log(data);
+      this.pasadias = data;
       this.calendarOptions.events = data!.map((element: any) => {
         return {
           id: element.id,

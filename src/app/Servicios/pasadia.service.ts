@@ -43,7 +43,7 @@ export class PasadiaService {
     return changes.asObservable();
   }
 
-  public async crearPasadia(clienteId: number, fecha: string) {
+  async crearPasadia(clienteId: number, fecha: string) {
     const { data, error } = await this.supabaseClient
       .from('Pasadias')
       .insert([
@@ -55,4 +55,32 @@ export class PasadiaService {
       .select();
     return data;
   }
+
+  async actualizarPasadia(clienteId: number, fecha: string, idPasadia: number) {
+    const { data, error } = await this.supabaseClient
+      .from('Pasadias')
+      .update([
+        {
+          cliente: clienteId,
+          fecha: fecha,
+        },
+      ])
+      .eq('id', idPasadia)
+      .select();
+    return data;
+  }
+  async eliminarPasadia(id: number) {
+    const { data: Reservation, error } = await this.supabaseClient
+      .from('Pasadias')
+      .delete()
+      .eq('id', id);
+    return Reservation;
+  }
+  /* async obtenerIdClientePorPasadia(idPasadia: number) {
+    const { data: Reservation, error } = await this.supabaseClient
+      .from('Pasadias')
+      .delete()
+      .eq('id', id);
+    return Reservation;
+  } */
 }
