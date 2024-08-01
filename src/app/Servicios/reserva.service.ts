@@ -29,4 +29,25 @@ export class ReservaService {
 
     return changes.asObservable();
   }
+
+  public async createReserva(reservacion: any) {
+    const { data, error } = await this.supabaseClient
+      .from('Bookings')
+      .insert([reservacion])
+      .select();
+    return data;
+  }
+
+  getReservaciones() {
+    const changes = new Subject();
+    this.detectarCambiosEnReservas().subscribe(() => {
+      this.supabaseClient
+        .from('Bookings')
+        .select('*,Customers (name), Rooms (name,color)')
+        .then((data) => {
+          changes.next(data.data);
+        });
+    });
+    return changes.asObservable();
+  }
 }
