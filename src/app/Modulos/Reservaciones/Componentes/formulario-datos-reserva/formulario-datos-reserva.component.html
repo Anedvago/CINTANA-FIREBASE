@@ -1,9 +1,13 @@
 <div class="container">
   <div class="formularios">
-    <form>
+    <form [formGroup]="formularioReserva" (change)="calcularTotalAPagar()">
       <mat-form-field class="full">
         <mat-label>Fecha Inicial</mat-label>
-        <input matInput [matDatepicker]="picker1" />
+        <input
+          matInput
+          [matDatepicker]="picker1"
+          formControlName="fechaInicial"
+        />
         <mat-datepicker-toggle
           matIconSuffix
           [for]="picker1"
@@ -12,13 +16,17 @@
       </mat-form-field>
       <mat-form-field class="full">
         <mat-label>Hora Entrada</mat-label>
-        <input matInput type="time" />
+        <input matInput type="time" formControlName="horaEntrada" />
         <mat-icon matSuffix>alarm</mat-icon>
       </mat-form-field>
 
       <mat-form-field class="full">
         <mat-label>Fecha Final</mat-label>
-        <input matInput [matDatepicker]="picker2" />
+        <input
+          matInput
+          [matDatepicker]="picker2"
+          formControlName="fechaFinal"
+        />
         <mat-datepicker-toggle
           matIconSuffix
           [for]="picker2"
@@ -27,31 +35,33 @@
       </mat-form-field>
       <mat-form-field class="full">
         <mat-label>Hora Salida</mat-label>
-        <input matInput type="time" />
+        <input matInput type="time" formControlName="horaSalida" />
         <mat-icon matSuffix>alarm</mat-icon>
       </mat-form-field>
       <div class="cantidad-personas">
         <mat-form-field class="medio">
           <mat-label>Adultos</mat-label>
-          <input matInput type="number" />
+          <input matInput type="number" formControlName="adultos" />
           <mat-icon matSuffix> directions_walk</mat-icon>
         </mat-form-field>
         <mat-form-field class="medio">
           <mat-label>Niños</mat-label>
-          <input matInput type="number" />
+          <input matInput type="number" formControlName="niños" />
           <mat-icon matSuffix>face</mat-icon>
         </mat-form-field>
       </div>
       <mat-form-field class="full">
         <mat-label>Habitacion</mat-label>
-        <mat-select>
+        <mat-select formControlName="habitacion">
           @for (habitacion of habitaciones; track habitacion) {
-          <mat-option [value]="habitacion.id">{{ habitacion.name }}</mat-option>
+          <mat-option [value]="habitacion.id">{{
+            habitacion.name | titlecase
+          }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
     </form>
-    <form>
+    <form [formGroup]="formularioPago" (change)="calcularTotalAPagar()">
       <mat-form-field class="full">
         <mat-label>Buscar Servicio</mat-label>
         <input matInput type="text" />
@@ -63,26 +73,29 @@
       </mat-form-field>
       <mat-form-field class="full">
         <mat-label>Metodo de pago</mat-label>
-        <mat-select>
-          @for (habitacion of habitaciones; track habitacion) {
-          <mat-option [value]="habitacion.id">{{ habitacion.name }}</mat-option>
+        <mat-select
+          formControlName="metodoDePago"
+          (selectionChange)="calcularTotalAPagar()"
+        >
+          @for (tipo of tiposDePago; track tipo) {
+          <mat-option [value]="tipo">{{ tipo | titlecase }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
       <mat-form-field class="full">
         <mat-label>Total a pagar</mat-label>
-        <input matInput type="text" />
+        <input matInput type="text" formControlName="totalAPagar" />
         <mat-icon matSuffix> attach_money</mat-icon>
       </mat-form-field>
       <mat-form-field class="full">
         <mat-label>Total cancelado</mat-label>
-        <input matInput type="text" />
+        <input matInput type="text" formControlName="totalCancelado" />
         <mat-icon matSuffix> money_off</mat-icon>
       </mat-form-field>
     </form>
   </div>
 
-  <button mat-fab extended class="btn">
+  <button mat-fab extended class="btn" (click)="registrarReserva()">
     <mat-icon>playlist_add</mat-icon>
     Registrar Reserva
   </button>

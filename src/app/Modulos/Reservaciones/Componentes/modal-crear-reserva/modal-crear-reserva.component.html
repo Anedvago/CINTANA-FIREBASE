@@ -4,6 +4,7 @@
     class="formulario-clientes"
     (clienteObtenido)="obtenerCliente($event)"
   ></app-formulario-buscar-cliente>
-  <app-formulario-datos-reserva></app-formulario-datos-reserva>
-  <!-- <app-formulario-servicios></app-formulario-servicios> -->
+  <app-formulario-datos-reserva
+    (registraReserva)="registrarReserva($event)"
+  ></app-formulario-datos-reserva>
 </div>
