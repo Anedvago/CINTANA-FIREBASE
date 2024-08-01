@@ -63,4 +63,12 @@ export class HabitacionService {
 
     return changes.asObservable();
   }
+
+  async getHabitaciones() {
+    let { data: todas } = await this.supabaseClient
+      .from('Rooms')
+      .select('*')
+      .order('name');
+    return todas;
+  }
 }

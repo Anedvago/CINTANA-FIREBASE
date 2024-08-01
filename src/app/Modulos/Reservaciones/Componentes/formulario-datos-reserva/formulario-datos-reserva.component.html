@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="formularios">
+    <form>
+      <mat-form-field class="full">
+        <mat-label>Fecha Inicial</mat-label>
+        <input matInput [matDatepicker]="picker1" />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="full">
+        <mat-label>Hora Entrada</mat-label>
+        <input matInput type="time" />
+        <mat-icon matSuffix>alarm</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="full">
+        <mat-label>Fecha Final</mat-label>
+        <input matInput [matDatepicker]="picker2" />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="full">
+        <mat-label>Hora Salida</mat-label>
+        <input matInput type="time" />
+        <mat-icon matSuffix>alarm</mat-icon>
+      </mat-form-field>
+      <div class="cantidad-personas">
+        <mat-form-field class="medio">
+          <mat-label>Adultos</mat-label>
+          <input matInput type="number" />
+          <mat-icon matSuffix> directions_walk</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="medio">
+          <mat-label>Niños</mat-label>
+          <input matInput type="number" />
+          <mat-icon matSuffix>face</mat-icon>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="full">
+        <mat-label>Habitacion</mat-label>
+        <mat-select>
+          @for (habitacion of habitaciones; track habitacion) {
+          <mat-option [value]="habitacion.id">{{ habitacion.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </form>
+    <form>
+      <mat-form-field class="full">
+        <mat-label>Buscar Servicio</mat-label>
+        <input matInput type="text" />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="full">
+        <mat-label>Servicios</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+      <mat-form-field class="full">
+        <mat-label>Metodo de pago</mat-label>
+        <mat-select>
+          @for (habitacion of habitaciones; track habitacion) {
+          <mat-option [value]="habitacion.id">{{ habitacion.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="full">
+        <mat-label>Total a pagar</mat-label>
+        <input matInput type="text" />
+        <mat-icon matSuffix> attach_money</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="full">
+        <mat-label>Total cancelado</mat-label>
+        <input matInput type="text" />
+        <mat-icon matSuffix> money_off</mat-icon>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <button mat-fab extended class="btn">
+    <mat-icon>playlist_add</mat-icon>
+    Registrar Reserva
+  </button>
+</div>

@@ -3,11 +3,14 @@
   [ngClass]="{ 'container-movil': esMovil, 'container-tablet': esTablet }"
 >
   <button
+    mat-fab
+    extended
+    class="btn"
     [ngClass]="{ 'btn-movil': esMovil, 'btn-tablet': esTablet }"
-    class="btn btn-azul"
-    mat-raised-button
+    (click)="registrarReserva()"
   >
-    Registrar reservacion
+    <mat-icon>playlist_add</mat-icon>
+    Registrar reserva
   </button>
   <full-calendar
     class=".full-calendar"

@@ -1,0 +1,21 @@
+.container {
+  height: 90vh;
+  width: 80vw;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+app-formulario-buscar-cliente {
+  width: 30%;
+  height: 100%;
+}
+app-formulario-datos-reserva {
+  width: 60%;
+  height: 100%;
+}
+/* app-formulario-servicios {
+  width: 30%;
+  height: 100%;
+}
+ */
