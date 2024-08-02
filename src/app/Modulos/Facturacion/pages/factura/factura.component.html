@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row-h">
+    <span class="logo">
+      <img src="./assets/img/logo.jpg" alt="logo" />
+    </span>
+    <span class="name">
+      <h2>El portal de la Cintana</h2>
+      <span>Posada turistica</span>
+      <span>Via a Minca, Santa Marta, Magdalena</span>
+      <span>Nit: 51644853</span>
+    </span>
+    <span class="bill" *ngIf="reservation">
+      <h2>Factura</h2>
+      <span>Serie: A101</span>
+      <span>Numero: {{ idReservation }}</span>
+      <span>Fecha: {{ date }}</span>
+    </span>
+  </div>
+  <div class="row-client">
+    <h3>Informacion del cliente</h3>
+    <tabla
+      *ngIf="customer"
+      [datos]="[customer]"
+      [columnas]="columsCustomer"
+      [columnasDisplay]="columsCustomerDisplay"
+    ></tabla>
+  </div>
+  <div class="row">
+    <h3>Informacion de alojamiento</h3>
+    <tabla
+      *ngIf="reservation"
+      [datos]="rowsReservation"
+      [columnas]="columsReservation"
+      [columnasDisplay]="columsReservationDisplay"
+    ></tabla>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="container">
+  <form [formGroup]="formulario">
+    <div class="cont-field">
+      <mat-form-field>
+        <mat-label>Estado de las llaves</mat-label>
+        <mat-select formControlName="llaves">
+          @for (estado of estados; track estado) {
+          <mat-option [value]="estado">{{ estado | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Cargo</mat-label>
+        <input matInput type="number" formControlName="cargoLlaves" />
+      </mat-form-field>
+    </div>
+    <div class="cont-field">
+      <mat-form-field>
+        <mat-label>Estado del colchón</mat-label>
+        <mat-select formControlName="colchon">
+          @for (estado of estados; track estado) {
+          <mat-option [value]="estado">{{ estado | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Cargo</mat-label>
+        <input matInput type="number" formControlName="cargoColchon" />
+      </mat-form-field>
+    </div>
+    <div class="cont-field">
+      <mat-form-field>
+        <mat-label>Estado de las sabanas</mat-label>
+        <mat-select formControlName="sabanas">
+          @for (estado of estados; track estado) {
+          <mat-option [value]="estado">{{ estado | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Cargo</mat-label>
+        <input matInput type="number" formControlName="cargoSabanas" />
+      </mat-form-field>
+    </div>
+    <div class="cont-field">
+      <mat-form-field>
+        <mat-label>Estado de las almohadas</mat-label>
+        <mat-select formControlName="almohadas">
+          @for (estado of estados; track estado) {
+          <mat-option [value]="estado">{{ estado | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Cargo</mat-label>
+        <input matInput type="number" formControlName="cargoAlmohadas" />
+      </mat-form-field>
+    </div>
+    <div class="cont-field">
+      <mat-form-field>
+        <mat-label>Estado de los bombillos</mat-label>
+        <mat-select formControlName="bombillos">
+          @for (estado of estados; track estado) {
+          <mat-option [value]="estado">{{ estado | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Cargo</mat-label>
+        <input matInput type="number" formControlName="cargoBombillos" />
+      </mat-form-field>
+    </div>
+    <div class="cont-field">
+      <mat-form-field>
+        <mat-label>Estado de las toallas</mat-label>
+        <mat-select formControlName="toallas">
+          @for (estado of estados; track estado) {
+          <mat-option [value]="estado">{{ estado | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Cargo</mat-label>
+        <input matInput type="number" formControlName="cargoToallas" />
+      </mat-form-field>
+    </div>
+    <div class="cont-field">
+      <mat-form-field>
+        <mat-label>Estado de los ventiladores</mat-label>
+        <mat-select formControlName="ventiladores">
+          @for (estado of estados; track estado) {
+          <mat-option [value]="estado">{{ estado | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Cargo</mat-label>
+        <input matInput type="number" formControlName="cargoVentiladores" />
+      </mat-form-field>
+    </div>
+    <div class="cont-field">
+      <mat-form-field>
+        <mat-label>Cargos adicionales</mat-label>
+        <mat-select formControlName="cargos">
+          @for (estado of estados; track estado) {
+          <mat-option [value]="estado">{{ estado | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Cargo</mat-label>
+        <input matInput type="number" formControlName="cargoCargos" />
+      </mat-form-field>
+    </div>
+    <div class="cont-field">
+      <button mat-fab extended class="btn btn-check" (click)="checkOut()">
+        <mat-icon>check_circle</mat-icon>
+        Check Out
+      </button>
+    </div>
+  </form>
+</div>

@@ -48,3 +48,6 @@ button {
 .btn-eliminar {
   background-color: red !important;
 }
+.btn-check {
+  background-color: green !important;
+}

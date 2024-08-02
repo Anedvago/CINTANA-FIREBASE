@@ -46,5 +46,6 @@ mat-nav-list button {
 }
 mat-sidenav-content {
   background-color: #e2e6f4;
-  
+  overflow: hidden !important;
+  height: 100vh;
 }

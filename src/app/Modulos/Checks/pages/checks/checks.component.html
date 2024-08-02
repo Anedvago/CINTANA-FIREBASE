@@ -1,0 +1,22 @@
+<div class="container">
+  <form [formGroup]="formulario">
+    <mat-form-field>
+      <mat-label>Tipo de identificación</mat-label>
+      <mat-select formControlName="tipo">
+        @for (tipo of tiposDeIdentificacion; track tipo) {
+        <mat-option [value]="tipo.valor">{{
+          tipo.nombre | titlecase
+        }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Identificación</mat-label>
+      <input matInput formControlName="identificacion" />
+    </mat-form-field>
+    <button mat-fab extended class="btn" (click)="buscarCliente()">
+      <mat-icon>search</mat-icon>
+      Buscar Cliente
+    </button>
+  </form>
+</div>

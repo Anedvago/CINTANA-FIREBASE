@@ -75,4 +75,9 @@ export class ModalCrearReservaComponent implements OnInit {
         this.dialogRef.close();
       });
   }
+  realizarCheckIn(reservaId: number) {
+    this.reservaService.checkIn(reservaId).then((data) => {
+      this.dialogRef.close();
+    });
+  }
 }

@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+.row-h {
+  display: flex;
+  flex-direction: row;
+  height: 15vh;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.row {
+  display: flex;
+  flex-direction: column;
+  height: 33vh;
+  width: 100%;
+  align-items: center;
+}
+
+.row-client {
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.logo {
+  width: 33%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.name,
+.bill {
+  width: 33vw;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+img {
+  height: auto;
+  width: 100%;
+}
+app-table {
+  width: 100%;
+}
+
+h3 {
+  font-weight: bold;
+  padding: 0px;
+  margin: 0px;
+}

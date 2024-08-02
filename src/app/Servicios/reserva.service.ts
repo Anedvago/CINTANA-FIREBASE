@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { SupabaseService } from './supabase.service';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { Subject } from 'rxjs';
+import { FechaService } from './fecha.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReservaService {
   supabaseClient: SupabaseClient;
-  constructor(private supabaseService: SupabaseService) {
+  constructor(
+    private supabaseService: SupabaseService,
+    private fechaService: FechaService
+  ) {
     this.supabaseClient = this.supabaseService.getSupabaseClient();
   }
 
@@ -65,5 +69,57 @@ export class ReservaService {
       .delete()
       .eq('id', id);
     return Reservation;
+  }
+
+  public async getReservaParaCheckIn(idCustomer: number) {
+    const today = this.fechaService.getFechaHora();
+    const tomorrow = this.fechaService.getFechaHoraMañana();
+    const { data: Reservation, error } = await this.supabaseClient
+      .from('Bookings')
+      .select()
+      .gte('start', today)
+      .lte('start', tomorrow)
+      .is('checkIn', null)
+      .eq('customer', idCustomer);
+
+    return Reservation;
+  }
+  public async getReservaParaCheckOut(idCustomer: number) {
+    const today = this.fechaService.getFechaHora();
+    const tomorrow = this.fechaService.getFechaHoraMañana();
+    const { data: Reservation, error } = await this.supabaseClient
+      .from('Bookings')
+      .select()
+      .is('checkOut', null)
+      .eq('customer', idCustomer);
+
+    return Reservation;
+  }
+
+  public async checkIn(id: number) {
+    const now = this.fechaService.getFechaHora();
+    const { data, error } = await this.supabaseClient
+      .from('Bookings')
+      .update({
+        checkIn: now,
+      })
+      .eq('id', id)
+      .select();
+    console.log(error);
+
+    return data;
+  }
+
+  public async checkOut(id: number) {
+    const now = this.fechaService.getFechaHora();
+    const { data, error } = await this.supabaseClient
+      .from('Bookings')
+      .update({
+        checkOut: now,
+        end: now,
+      })
+      .eq('id', id)
+      .select();
+    return data;
   }
 }

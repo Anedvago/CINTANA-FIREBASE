@@ -42,6 +42,7 @@ export class FormularioDatosReservaComponent implements OnInit {
   @Output() registraReserva = new EventEmitter<any>();
   @Output() eliminaReserva = new EventEmitter<any>();
   @Output() modificaReserva = new EventEmitter<any>();
+  @Output() clickCheckIn = new EventEmitter<any>();
   constructor(
     private habitacionService: HabitacionService,
     private fb: FormBuilder,
@@ -189,5 +190,8 @@ export class FormularioDatosReservaComponent implements OnInit {
     } else {
       this.alertaService.error('Formulario invalido');
     }
+  }
+  realizarCheckIn() {
+    this.clickCheckIn.emit(this.reserva.id);
   }
 }

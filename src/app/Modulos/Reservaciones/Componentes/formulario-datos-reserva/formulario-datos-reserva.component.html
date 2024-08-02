@@ -94,7 +94,18 @@
       </mat-form-field>
     </form>
   </div>
-  @if(reserva != undefined){
+  @if(reserva != undefined){ @if(reserva.checkIn == 'incoming'){
+  <button
+    mat-fab
+    extended
+    class="btn btn btn-check"
+    (click)="realizarCheckIn()"
+  >
+    <mat-icon>check_circle</mat-icon>
+    CheckIn
+  </button>
+
+  }@else {
   <div class="botonera">
     <button
       mat-fab
@@ -115,7 +126,7 @@
       Guardar Reserva
     </button>
   </div>
-  }@else{
+  } }@else{
   <button mat-fab extended class="btn" (click)="registrarReserva()">
     <mat-icon>playlist_add</mat-icon>
     Registrar Reserva
