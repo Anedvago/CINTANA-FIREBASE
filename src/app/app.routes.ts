@@ -8,13 +8,20 @@ import { PuntoDeVentaComponent } from './Modulos/PuntoDeVenta/Paginas/punto-de-v
 import { HabitacionesComponent } from './Modulos/Habitaciones/pages/habitaciones/habitaciones.component';
 import { ChecksComponent } from './Modulos/Checks/pages/checks/checks.component';
 import { FacturaComponent } from './Modulos/Facturacion/pages/factura/factura.component';
+import { InformesComponent } from './Modulos/Informes/pages/informes/informes.component';
 export const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
   {
     path: '',
     component: SidebarComponent,
     children: [
       { path: 'inicio', component: InicioComponent },
-      /*  { path: 'inventarios', component: MenuComponent }, */
+
       {
         path: 'inventarios',
         loadChildren: () =>
@@ -27,8 +34,8 @@ export const routes: Routes = [
       { path: 'habitaciones', component: HabitacionesComponent },
       { path: 'pasadias', component: CalendarioPasadias },
       { path: 'punto-de-venta', component: PuntoDeVentaComponent },
+      { path: 'informes', component: InformesComponent },
     ],
   },
   { path: 'billing/:idCustomer/:values', component: FacturaComponent },
-  { path: 'login', component: LoginComponent },
 ];

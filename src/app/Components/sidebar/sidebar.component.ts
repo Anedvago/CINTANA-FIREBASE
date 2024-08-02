@@ -59,6 +59,14 @@ export class SidebarComponent {
       texto: 'Punto de venta',
       ruta: 'punto-de-venta',
     },
+    {
+      texto: 'Informes',
+      ruta: 'informes',
+    },
+    {
+      texto: 'Cerrar sesión',
+      ruta: 'login',
+    },
   ];
   constructor(private layoutService: LayoutService) {}
 }
