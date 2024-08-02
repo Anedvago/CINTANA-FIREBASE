@@ -19,6 +19,8 @@
       <h3>Articulos</h3>
       <hr />
       <app-arbol-categoria
+        (clickElimina)="eliminarCategoriaDeArticulos($event)"
+        (clickEdita)="modificarCategoriaDeArticulos($event)"
         [datos]="categoriasDeArticulos"
       ></app-arbol-categoria>
     </div>
@@ -30,6 +32,8 @@
       <hr />
       <app-arbol-categoria
         [datos]="categoriasDeServicios"
+        (clickElimina)="eliminarCategoriaDeServicios($event)"
+        (clickEdita)="modificarCategoriaDeServicios($event)"
       ></app-arbol-categoria>
     </div>
   </div>

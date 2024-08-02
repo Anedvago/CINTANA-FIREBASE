@@ -3,14 +3,14 @@
   width: 50vw;
   overflow: auto;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-evenly;
 }
 form {
   padding: 40px 0px;
   width: 60%;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
 }
@@ -22,4 +22,7 @@ button {
   background-color: blue !important;
   color: white !important;
   width: 100%;
+}
+.btn-eliminar {
+  background-color: red !important;
 }

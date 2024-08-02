@@ -1,40 +1,81 @@
 <div class="container">
-  <form>
+  <form [formGroup]="formulario">
     <mat-form-field>
       <mat-label>Categoria para</mat-label>
-      <mat-select>
-        <!-- @for (food of foods; track food) {
-                <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
-              } -->
+      <mat-select formControlName="tipo" (selectionChange)="establecerTipo()">
+        @for (tipo of tiposCategoria; track tipo) {
+        <mat-option [value]="tipo">{{ tipo | titlecase }}</mat-option>
+        }
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Familia</mat-label>
-      <mat-select>
-        <!-- @for (food of foods; track food) {
-                  <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
-                } -->
+      <mat-label>Profundidad Categoria</mat-label>
+      <mat-select
+        formControlName="profundidad"
+        (selectionChange)="establecerProfundidad()"
+      >
+        @for (profundidad of profundidades; track profundidad){
+        <mat-option [value]="profundidad">
+          {{ profundidad | titlecase }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Departamento</mat-label>
+      <mat-select
+        formControlName="departamento"
+        (selectionChange)="filtrarPorDepartamento()"
+      >
+        @for (dpto of departamentos; track departamentos) {
+        <mat-option [value]="dpto.id">{{ dpto.name | titlecase }}</mat-option>
+        }
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Seccion</mat-label>
-      <mat-select>
-        <!-- @for (food of foods; track food) {
-                  <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
-                } -->
+      <mat-select
+        formControlName="seccion"
+        (selectionChange)="filtrarPorSeccion()"
+      >
+        @for (sec of seccionesFiltradas; track sec) {
+        <mat-option [value]="sec.id">{{ sec.name | titlecase }}</mat-option>
+        }
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Familia</mat-label>
-      <mat-select>
-        <!-- @for (food of foods; track food) {
-                  <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
-                } -->
-      </mat-select>
+      <mat-label
+        >Nombre
+        {{ formulario.get("profundidad")!.value | titlecase }}</mat-label
+      >
+      <input matInput formControlName="nombre" />
     </mat-form-field>
-    <mat-form-field>
-      <mat-label>Nombre</mat-label>
-      <input matInput />
-    </mat-form-field>
+    @if(data != undefined ){ @if(data.operacion == 'ELIMINAR'){
+    <button
+      mat-fab
+      extended
+      class="btn btn-eliminar"
+      (click)="eliminarCategoria()"
+    >
+      <mat-icon>delete</mat-icon>
+      Eliminar
+    </button>
+    }@else {
+    <button
+      mat-fab
+      extended
+      class="btn btn-guardar"
+      (click)="editarCategoria()"
+    >
+      <mat-icon>save</mat-icon>
+      Guardar
+    </button>
+    } }@else {
+    <button mat-fab extended class="btn" (click)="crearCategoria()">
+      <mat-icon>playlist_add</mat-icon>
+      Crear Categoria
+    </button>
+    }
   </form>
 </div>

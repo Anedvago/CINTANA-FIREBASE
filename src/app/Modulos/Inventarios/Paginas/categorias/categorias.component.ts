@@ -38,17 +38,119 @@ export class CategoriasComponent {
   }
 
   crearCategoria() {
-    const dialogRef = this.dialog.open(
-      ModalNuevaCategoriaComponent /* , {
-      data: { name: this.name(), animal: this.animal() },
-    } */
-    );
+    const dialogRef = this.dialog.open(ModalNuevaCategoriaComponent);
 
-    /* dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      if (result !== undefined) {
-        this.animal.set(result);
-      }
-    }); */
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getCategorias();
+    });
+  }
+
+  construirCategoriaDeArticulos(categoria: any) {
+    switch (categoria.level) {
+      case 0:
+        categoria = {
+          ...categoria,
+          profundidad: 'DEPARTAMENTO',
+          ...this.categoriasDeArticulos.filter(
+            (elem) => elem?.id == categoria.id
+          )[0],
+        };
+        break;
+      case 1:
+        categoria = {
+          ...categoria,
+          profundidad: 'SECCION',
+          ...this.categoriasDeArticulos
+            .flatMap((data) => data?.children)
+            .filter((elem) => elem?.id == categoria.id)[0],
+        };
+        break;
+      case 2:
+        categoria = {
+          ...categoria,
+          profundidad: 'FAMILIA',
+          ...this.categoriasDeArticulos
+            .flatMap((data) => data?.children)
+            .flatMap((data) => data?.children)
+            .filter((elem) => elem?.id == categoria.id)[0],
+        };
+        break;
+    }
+
+    return categoria;
+  }
+  construirCategoriaDeServicios(categoria: any) {
+    switch (categoria.level) {
+      case 0:
+        categoria = {
+          ...categoria,
+          profundidad: 'DEPARTAMENTO',
+          ...this.categoriasDeServicios.filter(
+            (elem) => elem?.id == categoria.id
+          )[0],
+        };
+        break;
+      case 1:
+        categoria = {
+          ...categoria,
+          profundidad: 'SECCION',
+          ...this.categoriasDeServicios
+            .flatMap((data) => data?.children)
+            .filter((elem) => elem?.id == categoria.id)[0],
+        };
+        break;
+      case 2:
+        categoria = {
+          ...categoria,
+          profundidad: 'FAMILIA',
+          ...this.categoriasDeServicios
+            .flatMap((data) => data?.children)
+            .flatMap((data) => data?.children)
+            .filter((elem) => elem?.id == categoria.id)[0],
+        };
+        break;
+    }
+
+    return categoria;
+  }
+  eliminarCategoriaDeArticulos(categoria: any) {
+    categoria = this.construirCategoriaDeArticulos(categoria);
+    const dialogRef = this.dialog.open(ModalNuevaCategoriaComponent, {
+      data: { categoria: categoria, operacion: 'ELIMINAR' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getCategorias();
+    });
+  }
+  modificarCategoriaDeArticulos(categoria: any) {
+    categoria = this.construirCategoriaDeArticulos(categoria);
+    const dialogRef = this.dialog.open(ModalNuevaCategoriaComponent, {
+      data: { categoria: categoria, operacion: 'EDITAR' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getCategorias();
+    });
+  }
+  eliminarCategoriaDeServicios(categoria: any) {
+    categoria = this.construirCategoriaDeServicios(categoria);
+    const dialogRef = this.dialog.open(ModalNuevaCategoriaComponent, {
+      data: { categoria: categoria, operacion: 'ELIMINAR' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getCategorias();
+    });
+  }
+  modificarCategoriaDeServicios(categoria: any) {
+    categoria = this.construirCategoriaDeServicios(categoria);
+    const dialogRef = this.dialog.open(ModalNuevaCategoriaComponent, {
+      data: { categoria: categoria, operacion: 'EDITAR' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getCategorias();
+    });
   }
 }

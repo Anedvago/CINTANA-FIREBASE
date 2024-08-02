@@ -135,4 +135,118 @@ export class CategoriaService {
       .eq('type', 'S');
     return Families;
   }
+
+  public async crearDepartamento(
+    type: string,
+    name: string
+  ): Promise<any[] | null> {
+    const { data, error } = await this.supabaseClient
+      .from('Departaments')
+      .insert([{ type: type, name: name }])
+      .select();
+
+    return data;
+  }
+
+  public async actualizarDepartamento(
+    id: number,
+    type: string,
+    name: string
+  ): Promise<any[] | null> {
+    const { data, error } = await this.supabaseClient
+      .from('Departaments')
+      .update([{ type: type, name: name }])
+      .eq('id', id)
+      .select();
+
+    return data;
+  }
+
+  public async borrarDepartamento(id: number): Promise<any | null> {
+    const { error } = await this.supabaseClient
+      .from('Departaments')
+      .delete()
+      .eq('id', id);
+
+    return error;
+  }
+
+  public async crearSeccion(
+    type: string,
+    departament: string,
+    name: string
+  ): Promise<any[] | null> {
+    const { data, error } = await this.supabaseClient
+      .from('Sections')
+      .insert([{ type: type, departament: departament, name: name }])
+      .select();
+
+    return data;
+  }
+
+  public async actualizarSeccion(
+    id: number,
+    type: string,
+    departament: string,
+    name: string
+  ): Promise<any[] | null> {
+    const { data, error } = await this.supabaseClient
+      .from('Sections')
+      .update([{ type: type, departament: departament, name: name }])
+      .eq('id', id)
+      .select();
+
+    return data;
+  }
+
+  public async borrarSeccion(id: number): Promise<any | null> {
+    const { error } = await this.supabaseClient
+      .from('Sections')
+      .delete()
+      .eq('id', id);
+
+    return error;
+  }
+
+  public async crearFamilia(
+    type: string,
+    departament: string,
+    section: string,
+    name: string
+  ): Promise<any[] | null> {
+    const { data, error } = await this.supabaseClient
+      .from('Families')
+      .insert([
+        { type: type, departament: departament, section: section, name: name },
+      ])
+      .select();
+    console.log(error);
+    return data;
+  }
+
+  public async actualizarFamilia(
+    id: number,
+    type: string,
+    departament: string,
+    section: string,
+    name: string
+  ): Promise<any[] | null> {
+    const { data, error } = await this.supabaseClient
+      .from('Families')
+      .update([
+        { type: type, departament: departament, section: section, name: name },
+      ])
+      .eq('id', id)
+      .select();
+
+    return data;
+  }
+  public async borrarFamilia(id: number): Promise<any | null> {
+    const { error } = await this.supabaseClient
+      .from('Families')
+      .delete()
+      .eq('id', id);
+
+    return error;
+  }
 }

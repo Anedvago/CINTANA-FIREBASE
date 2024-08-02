@@ -1,9 +1,11 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
 import {
   Component,
+  EventEmitter,
   Input,
   input,
   OnChanges,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,11 +16,13 @@ import {
   MatTreeModule,
 } from '@angular/material/tree';
 interface ExampleNode {
+  id: number;
   name: string;
   children?: ExampleNode[];
 }
 
 interface ExampleFlatNode {
+  id: number;
   expandable: boolean;
   name: string;
   level: number;
@@ -32,6 +36,8 @@ interface ExampleFlatNode {
 })
 export class ArbolCategoriaComponent implements OnChanges {
   @Input() datos: any[] = [];
+  @Output() clickElimina = new EventEmitter<any>();
+  @Output() clickEdita = new EventEmitter<any>();
   constructor() {
     this.dataSource.data = this.datos;
   }
@@ -43,6 +49,7 @@ export class ArbolCategoriaComponent implements OnChanges {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
       level: level,
+      id: node.id,
     };
   };
 
@@ -62,10 +69,10 @@ export class ArbolCategoriaComponent implements OnChanges {
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
   editNode(node: ExampleFlatNode) {
-    console.log(`Edit node ${node.name}`);
+    this.clickEdita.emit(node);
   }
 
   deleteNode(node: ExampleFlatNode) {
-    console.log(`Delete node ${node.name}`);
+    this.clickElimina.emit(node);
   }
 }
