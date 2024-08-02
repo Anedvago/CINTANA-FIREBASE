@@ -53,9 +53,30 @@
         }
       </mat-select>
     </mat-form-field>
-    <button mat-fab extended class="btn">
+    @if(data != undefined){
+    <div class="botonera">
+      <button
+        mat-fab
+        extended
+        class="btn btn-eliminar"
+        (click)="eliminarArticulo()"
+      >
+        <mat-icon>delete</mat-icon>
+        Eliminar
+      </button>
+      <button
+        mat-fab
+        extended
+        class="btn btn-guardar"
+        (click)="actualizarArticulo()"
+      >
+        <mat-icon>save</mat-icon>
+        Guardar
+      </button>
+    </div>
+    }@else {<button mat-fab extended class="btn" (click)="crearArticulo()">
       <mat-icon>playlist_add</mat-icon>
-      Crear Articulo
-    </button>
+      Crear Articulo</button
+    >}
   </form>
 </div>

@@ -23,3 +23,14 @@ button {
   color: white !important;
   width: 100%;
 }
+.botonera {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.botonera .btn {
+  width: 48%;
+}
+.btn-eliminar {
+  background-color: red !important;
+}

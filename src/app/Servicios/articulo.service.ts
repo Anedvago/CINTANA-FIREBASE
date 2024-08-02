@@ -28,4 +28,28 @@ export class ArticuloService {
       .order('id', { ascending: true });
     return Rooms;
   }
+  public async crearArticulo(article: any) {
+    let { data, error } = await this.supabaseClient
+      .from('Articles')
+      .insert([article])
+      .select('*');
+
+    return data;
+  }
+  public async actualizarArticulo(article: any) {
+    let { data } = await this.supabaseClient
+      .from('Articles')
+      .update([article])
+      .eq('id', article.id)
+      .select('*');
+    return data;
+  }
+  public async eliminarArticulo(id: number) {
+    const { data } = await this.supabaseClient
+      .from('Articles')
+      .delete()
+      .eq('id', id);
+
+    return data;
+  }
 }

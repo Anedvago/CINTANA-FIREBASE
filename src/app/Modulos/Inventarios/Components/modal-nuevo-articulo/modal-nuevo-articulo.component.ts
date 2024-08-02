@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,6 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CategoriaService } from '../../../../Servicios/categoria.service';
 import { TitleCasePipe } from '@angular/common';
+import { ArticuloService } from '../../../../Servicios/articulo.service';
+import { AlertaService } from '../../../../Servicios/alerta.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal-nuevo-articulo',
@@ -33,10 +36,19 @@ export class ModalNuevoArticuloComponent implements OnInit {
   familiasFiltradas: any[] = [];
   constructor(
     private fb: FormBuilder,
-    private categoriaService: CategoriaService
+    private categoriaService: CategoriaService,
+    private artiuloService: ArticuloService,
+    private alertaService: AlertaService,
+    public dialogRef: MatDialogRef<ModalNuevoArticuloComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
   ngOnInit(): void {
-    this.inicializarFormulario();
+    if (this.data != undefined) {
+      this.inicializarFormularioConArticulo();
+    } else {
+      this.inicializarFormulario();
+    }
+
     this.getDepartamentos();
     this.getSecciones();
     this.getFamilias();
@@ -51,6 +63,19 @@ export class ModalNuevoArticuloComponent implements OnInit {
       departamento: [],
       seccion: [],
       familia: [],
+    });
+    this.formulario.get('codigo')?.disable();
+  }
+  inicializarFormularioConArticulo() {
+    this.formulario = this.fb.group({
+      codigo: [this.data.id],
+      referencia: [this.data.ref],
+      nombre: [this.data.name],
+      precio: [this.data.value],
+      stock: [this.data.stock],
+      departamento: [this.data.dpto],
+      seccion: [this.data.section],
+      familia: [this.data.family],
     });
     this.formulario.get('codigo')?.disable();
   }
@@ -110,5 +135,59 @@ export class ModalNuevoArticuloComponent implements OnInit {
     this.familiasFiltradas = this.familias.filter(
       (elem) => elem.section == seccion
     );
+  }
+
+  crearArticulo() {
+    if (this.formulario.valid) {
+      this.artiuloService
+        .crearArticulo(this.construirArticulo())
+        .then((data: any) => {
+          this.dialogRef.close(data[0]);
+        });
+    } else {
+      this.alertaService.error('Formulario invalido');
+    }
+  }
+
+  actualizarArticulo() {
+    if (this.formulario.valid) {
+      this.artiuloService
+        .actualizarArticulo(this.construirArticuloParaActualizar())
+        .then((data: any) => {
+          this.dialogRef.close(data[0]);
+        });
+    } else {
+      this.alertaService.error('Formulario invalido');
+    }
+  }
+
+  eliminarArticulo() {
+    this.artiuloService.eliminarArticulo(this.data.id).then((data) => {
+      this.dialogRef.close(this.data);
+    });
+  }
+
+  construirArticulo() {
+    return {
+      ref: this.formulario.get('referencia')!.value.toUpperCase(),
+      name: this.formulario.get('nombre')!.value.toUpperCase(),
+      value: this.formulario.get('precio')!.value,
+      stock: this.formulario.get('stock')!.value,
+      dpto: this.formulario.get('departamento')!.value,
+      section: this.formulario.get('seccion')!.value,
+      family: this.formulario.get('familia')!.value,
+    };
+  }
+  construirArticuloParaActualizar() {
+    return {
+      id: this.data.id,
+      ref: this.formulario.get('referencia')!.value.toUpperCase(),
+      name: this.formulario.get('nombre')!.value.toUpperCase(),
+      value: this.formulario.get('precio')!.value,
+      stock: this.formulario.get('stock')!.value,
+      dpto: this.formulario.get('departamento')!.value,
+      section: this.formulario.get('seccion')!.value,
+      family: this.formulario.get('familia')!.value,
+    };
   }
 }

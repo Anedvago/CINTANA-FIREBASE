@@ -6,6 +6,7 @@
     formularioPara="ARTICULOS"
     (clickBuscar)="filtrarPorNombre($event)"
     (clickQuitarFiltros)="quitarFiltros()"
+    (articuloCreado)="getArticulos()"
   ></app-formulario-articulos>
   <tabla
     [ngClass]="{ 'tabla-movil': esMovil }"

@@ -73,6 +73,13 @@ export class ArticulosComponent {
   }
 
   modificarArticulo(event: any) {
-    this.dialog.open(ModalNuevoArticuloComponent);
+    const dialogRef = this.dialog.open(ModalNuevoArticuloComponent, {
+      data: event,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result !== undefined) {
+        this.getArticulos();
+      }
+    });
   }
 }
