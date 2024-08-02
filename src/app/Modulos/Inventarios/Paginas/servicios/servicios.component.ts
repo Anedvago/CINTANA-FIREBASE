@@ -61,6 +61,13 @@ export class ServiciosComponent {
     this.serviciosFiltrados = this.servicios.slice();
   }
   modificarServicio(event: any) {
-    this.dialog.open(ModalNuevoServicioComponent);
+    const dialogRef = this.dialog.open(ModalNuevoServicioComponent, {
+      data: event,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result !== undefined) {
+        this.getServicios();
+      }
+    });
   }
 }

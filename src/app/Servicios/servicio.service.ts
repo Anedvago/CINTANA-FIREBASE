@@ -17,4 +17,30 @@ export class ServicioService {
       .select('*');
     return Rooms;
   }
+  public async crearServicio(servicio: any) {
+    let { data, error } = await this.supabaseClient
+      .from('Services')
+      .insert([servicio])
+      .select('*');
+
+    console.log(error);
+
+    return data;
+  }
+  public async actualizarServicio(service: any) {
+    let { data, error } = await this.supabaseClient
+      .from('Services')
+      .update([service])
+      .eq('id', service.id)
+      .select('*');
+    return data;
+  }
+  public async eliminarServicio(id: number) {
+    const { error } = await this.supabaseClient
+      .from('Services')
+      .delete()
+      .eq('id', id);
+
+    return error;
+  }
 }

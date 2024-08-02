@@ -1,1 +1,82 @@
-<p>modal-nuevo-servicio works!</p>
+<div class="container">
+  <form [formGroup]="formulario">
+    <mat-form-field class="example-full-width">
+      <mat-label>Código</mat-label>
+      <input matInput formControlName="codigo" />
+    </mat-form-field>
+    <!-- <mat-form-field class="example-full-width">
+      <mat-label>Referencia</mat-label>
+      <input matInput formControlName="referencia" />
+    </mat-form-field> -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Precio</mat-label>
+      <input matInput type="number" formControlName="precio" />
+    </mat-form-field>
+    <!-- <mat-form-field class="example-full-width">
+      <mat-label>Stock</mat-label>
+      <input matInput type="number" formControlName="stock" />
+    </mat-form-field> -->
+    <mat-form-field>
+      <mat-label>Departamento</mat-label>
+      <mat-select
+        formControlName="departamento"
+        (selectionChange)="filtrarPorDepartamento()"
+      >
+        @for (dep of departamentosFiltrados; track dep) {
+        <mat-option [value]="dep.id">{{ dep.name | titlecase }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Seccion</mat-label>
+      <mat-select
+        formControlName="seccion"
+        (selectionChange)="filtrarPorSeccion()"
+      >
+        @for (sec of seccionesFiltradas; track sec) {
+        <mat-option [value]="sec.id">{{ sec.name | titlecase }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Familia</mat-label>
+      <mat-select
+        formControlName="familia"
+        (selectionChange)="filtrarPorFamilia()"
+      >
+        @for (fam of familiasFiltradas; track fam) {
+        <mat-option [value]="fam.id">{{ fam.name | titlecase }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    @if(data != undefined){
+    <div class="botonera">
+      <button
+        mat-fab
+        extended
+        class="btn btn-eliminar"
+        (click)="eliminarServicio()"
+      >
+        <mat-icon>delete</mat-icon>
+        Eliminar
+      </button>
+      <button
+        mat-fab
+        extended
+        class="btn btn-guardar"
+        (click)="actualizarServicio()"
+      >
+        <mat-icon>save</mat-icon>
+        Guardar
+      </button>
+    </div>
+    }@else {<button mat-fab extended class="btn" (click)="crearServicio()">
+      <mat-icon>playlist_add</mat-icon>
+      Crear Servicio</button
+    >}
+  </form>
+</div>

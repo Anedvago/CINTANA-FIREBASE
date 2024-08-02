@@ -33,6 +33,7 @@ export class FormularioArticulosComponent {
   @Output() clickBuscar = new EventEmitter<string>();
   @Output() clickQuitarFiltros = new EventEmitter();
   @Output() articuloCreado = new EventEmitter();
+  @Output() servicioCreado = new EventEmitter();
   readonly dialog = inject(MatDialog);
   constructor(private layoutService: LayoutService) {}
   limpiarFiltro() {
@@ -43,11 +44,16 @@ export class FormularioArticulosComponent {
       const dialogRef = this.dialog.open(ModalNuevoArticuloComponent);
       dialogRef.afterClosed().subscribe((result) => {
         if (result !== undefined) {
-          this.articuloCreado.emit(result);
+          this.servicioCreado.emit(result);
         }
       });
     } else {
-      this.dialog.open(ModalNuevoServicioComponent);
+      const dialogRef = this.dialog.open(ModalNuevoServicioComponent);
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result !== undefined) {
+          this.articuloCreado.emit(result);
+        }
+      });
     }
   }
 }
