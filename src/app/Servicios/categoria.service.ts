@@ -92,4 +92,47 @@ export class CategoriaService {
 
     return Departaments;
   }
+
+  async getDepartametosDeArticulos() {
+    let { data: Departaments } = await this.supabaseClient
+      .from('Departaments')
+      .select('*')
+      .eq('type', 'A');
+    return Departaments;
+  }
+  async getDepartametosDeServicios() {
+    let { data: Departaments } = await this.supabaseClient
+      .from('Departaments')
+      .select('*')
+      .eq('type', 'S');
+    return Departaments;
+  }
+  async getSeccionesDeArticulos() {
+    let { data: Sections } = await this.supabaseClient
+      .from('Sections')
+      .select('*')
+      .eq('type', 'A');
+    return Sections;
+  }
+  async getSeccionesDeServicios() {
+    let { data: Sections } = await this.supabaseClient
+      .from('Sections')
+      .select('*')
+      .eq('type', 'S');
+    return Sections;
+  }
+  async getFamiliasDeArticulos() {
+    let { data: Families } = await this.supabaseClient
+      .from('Families')
+      .select('*')
+      .eq('type', 'A');
+    return Families;
+  }
+  async getFamiliasDeServicios() {
+    let { data: Families } = await this.supabaseClient
+      .from('Families')
+      .select('*')
+      .eq('type', 'S');
+    return Families;
+  }
 }

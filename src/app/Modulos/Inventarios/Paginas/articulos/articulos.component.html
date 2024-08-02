@@ -4,11 +4,14 @@
 >
   <app-formulario-articulos
     formularioPara="ARTICULOS"
+    (clickBuscar)="filtrarPorNombre($event)"
+    (clickQuitarFiltros)="quitarFiltros()"
   ></app-formulario-articulos>
   <tabla
     [ngClass]="{ 'tabla-movil': esMovil }"
     [columnas]="columnas"
     [columnasDisplay]="columnasDisplay"
     [datos]="articulosFiltrados"
+    (clickTr)="modificarArticulo($event)"
   />
 </div>

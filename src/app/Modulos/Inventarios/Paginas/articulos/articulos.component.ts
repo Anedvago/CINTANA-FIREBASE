@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TableComponent } from '../../../../Components/table/table.component';
 import { ArticuloService } from '../../../../Servicios/articulo.service';
 import { FormularioArticulosComponent } from '../../Components/formulario-articulos/formulario-articulos.component';
 import { LayoutService } from '../../../../Servicios/layout.service';
 import { NgClass } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalNuevoArticuloComponent } from '../../Components/modal-nuevo-articulo/modal-nuevo-articulo.component';
 
 @Component({
   selector: 'app-articulos',
@@ -38,7 +40,7 @@ export class ArticulosComponent {
 
   public articulos: any[] = [];
   public articulosFiltrados: any[] = [];
-
+  readonly dialog = inject(MatDialog);
   constructor(
     private articuloService: ArticuloService,
     private layoutService: LayoutService
@@ -51,5 +53,26 @@ export class ArticulosComponent {
       this.articulos = data;
       this.articulosFiltrados = data;
     });
+  }
+  public filtrarPorNombre(event: any) {
+    this.articulosFiltrados = this.articulos.filter(function (objeto) {
+      function cleanString(text: string): string {
+        return text
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase();
+      }
+      return cleanString(objeto.name)
+        .toLowerCase()
+        .includes(cleanString(event.toLowerCase()));
+    });
+  }
+
+  public quitarFiltros() {
+    this.articulosFiltrados = this.articulos.slice();
+  }
+
+  modificarArticulo(event: any) {
+    this.dialog.open(ModalNuevoArticuloComponent);
   }
 }

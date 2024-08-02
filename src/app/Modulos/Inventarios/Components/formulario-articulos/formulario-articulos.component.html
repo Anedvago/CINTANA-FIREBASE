@@ -5,7 +5,7 @@
     class="no-hint-space"
   >
     <mat-label>Nombre</mat-label>
-    <input matInput />
+    <input matInput [(ngModel)]="parametroBusqueda" name="parametroBusqueda" />
   </mat-form-field>
   <div
     class="container-btn"
@@ -17,7 +17,7 @@
         <mat-icon>search</mat-icon>
       </button>
       }@else{
-      <button mat-fab extended>
+      <button mat-fab extended (click)="clickBuscar.emit(parametroBusqueda)">
         <mat-icon>search</mat-icon>
         Buscar
       </button>
@@ -29,7 +29,11 @@
         <mat-icon>close</mat-icon>
       </button>
       }@else {
-      <button mat-fab extended>
+      <button
+        mat-fab
+        extended
+        (click)="clickQuitarFiltros.emit(); limpiarFiltro()"
+      >
         <mat-icon>close</mat-icon>
         Quitar filtros
       </button>
@@ -41,7 +45,7 @@
         <mat-icon>playlist_add</mat-icon>
       </button>
       }@else{
-      <button mat-fab extended>
+      <button mat-fab extended (click)="crear()">
         <mat-icon>playlist_add</mat-icon>
         Crear {{ formularioPara | titlecase }}</button
       >}
