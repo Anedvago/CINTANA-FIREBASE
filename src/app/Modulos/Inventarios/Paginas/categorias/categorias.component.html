@@ -3,7 +3,7 @@
   [ngClass]="{ 'container-movil-tablet': esMovil == true || esTablet == true }"
 >
   <div class="header">
-    <button mat-fab extended class="btn">
+    <button mat-fab extended class="btn" (click)="crearCategoria()">
       <mat-icon>playlist_add</mat-icon>
       Crear categoria
     </button>

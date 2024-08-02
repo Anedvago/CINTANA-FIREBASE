@@ -44,14 +44,14 @@ export class FormularioArticulosComponent {
       const dialogRef = this.dialog.open(ModalNuevoArticuloComponent);
       dialogRef.afterClosed().subscribe((result) => {
         if (result !== undefined) {
-          this.servicioCreado.emit(result);
+          this.articuloCreado.emit(result);
         }
       });
     } else {
       const dialogRef = this.dialog.open(ModalNuevoServicioComponent);
       dialogRef.afterClosed().subscribe((result) => {
         if (result !== undefined) {
-          this.articuloCreado.emit(result);
+          this.servicioCreado.emit(result);
         }
       });
     }
