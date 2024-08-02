@@ -1,0 +1,14 @@
+<div class="container">
+  <button mat-fab extended class="btn" (click)="crearHabitacion()">
+    <mat-icon>playlist_add</mat-icon>
+    Crear Habitacion
+  </button>
+  <section>
+    @for (habitacion of habitaciones; track habitacion) {
+    <app-card-habitacion
+      [room]="habitacion"
+      (click)="modificarHabitacion(habitacion)"
+    ></app-card-habitacion>
+    }
+  </section>
+</div>

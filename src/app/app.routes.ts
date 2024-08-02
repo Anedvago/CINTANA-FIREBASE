@@ -6,6 +6,7 @@ import { MenuComponent } from './Modulos/Inventarios/Paginas/menu/menu.component
 import { CalendarioComponent } from './Modulos/Reservaciones/Paginas/calendario/calendario.component';
 import { CalendarioComponent as CalendarioPasadias } from './Modulos/Pasadias/Paginas/calendario/calendario.component';
 import { PuntoDeVentaComponent } from './Modulos/PuntoDeVenta/Paginas/punto-de-venta/punto-de-venta.component';
+import { HabitacionesComponent } from './Modulos/Habitaciones/pages/habitaciones/habitaciones.component';
 export const routes: Routes = [
   {
     path: '',
@@ -21,6 +22,7 @@ export const routes: Routes = [
           ),
       },
       { path: 'reservaciones', component: CalendarioComponent },
+      { path: 'habitaciones', component: HabitacionesComponent },
       { path: 'pasadias', component: CalendarioPasadias },
       { path: 'punto-de-venta', component: PuntoDeVentaComponent },
     ],

@@ -71,4 +71,29 @@ export class HabitacionService {
       .order('name');
     return todas;
   }
+
+  public async crearHabitacion(room: any) {
+    const { data, error } = await this.supabaseClient
+      .from('Rooms')
+      .insert([room])
+      .select();
+    return data;
+  }
+  public async actualizarHabitacion(room: any) {
+    const { data, error } = await this.supabaseClient
+      .from('Rooms')
+      .update([{ name: room.name, type: room.type, color: room.color }])
+      .eq('id', room.id)
+      .select();
+    return data;
+  }
+
+  public async borrarHabitacion(id: number) {
+    const { data, error } = await this.supabaseClient
+      .from('Rooms')
+      .delete()
+      .eq('id', id)
+      .select();
+    return data;
+  }
 }

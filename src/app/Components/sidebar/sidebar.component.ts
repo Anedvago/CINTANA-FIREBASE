@@ -44,6 +44,10 @@ export class SidebarComponent {
       ruta: 'reservaciones',
     },
     {
+      texto: 'Habitaciones',
+      ruta: 'habitaciones',
+    },
+    {
       texto: 'Pasadias',
       ruta: 'pasadias',
     },
