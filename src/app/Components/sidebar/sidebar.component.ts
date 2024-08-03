@@ -40,6 +40,10 @@ export class SidebarComponent {
       ruta: 'inventarios',
     },
     {
+      texto: 'Clientes',
+      ruta: 'clientes',
+    },
+    {
       texto: 'Reservaciones',
       ruta: 'reservaciones',
     },
@@ -62,6 +66,10 @@ export class SidebarComponent {
     {
       texto: 'Informes',
       ruta: 'informes',
+    },
+    {
+      texto: 'Configuracion',
+      ruta: 'configuracion',
     },
     {
       texto: 'Cerrar sesión',

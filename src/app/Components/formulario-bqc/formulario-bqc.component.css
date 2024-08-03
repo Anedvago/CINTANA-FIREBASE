@@ -1,0 +1,46 @@
+form {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.formulario-movil {
+  display: flex;
+  flex-direction: column;
+}
+mat-form-field {
+  width: 50%;
+  height: 100%;
+}
+
+.form-movil {
+  width: 100%;
+}
+.form-tablet {
+  width: 30%;
+}
+
+.container-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+  height: 100%;
+}
+.botones-tablet {
+  width: 70%;
+}
+.botones-movil {
+  width: 100%;
+}
+button {
+  border-radius: 0px !important;
+  background-color: blue !important;
+}
+.boton-movil-container {
+  width: 30%;
+}
+.boton-movil {
+  width: 100%;
+}

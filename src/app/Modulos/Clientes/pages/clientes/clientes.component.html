@@ -2,16 +2,18 @@
   class="container"
   [ngClass]="{ 'container-movil-tablet': esMovil == true || esTablet == true }"
 >
-  <app-formulario-articulos
+  <app-formulario-bqc formularioPara="CLIENTES"></app-formulario-bqc>
+  <!-- <app-formulario-articulos
     formularioPara="ARTICULOS"
     (clickBuscar)="filtrarPorNombre($event)"
     (clickQuitarFiltros)="quitarFiltros()"
     (articuloCreado)="getArticulos()"
-  ></app-formulario-articulos>
-  <app-tabla
+  ></app-formulario-articulos> -->
+  <tabla
     [ngClass]="{ 'tabla-movil': esMovil }"
-    [datos]="articulosFiltrados"
-    [columnas]="columnasTabla"
-    (clickTr)="modificarArticulo($event)"
+    [columnas]="columnas"
+    [columnasDisplay]="columnasDisplay"
+    [datos]="clientesFiltrados"
+    (clickTr)="modificarCliente($event)"
   />
 </div>

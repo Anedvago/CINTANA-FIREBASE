@@ -1,0 +1,39 @@
+<table mat-table [dataSource]="datos" class="mat-elevation-z0 demo-table">
+  @for (columna of columnas; track columna) {
+  <ng-container [matColumnDef]="columna.atributo">
+    <th mat-header-cell *matHeaderCellDef class="header">
+      {{ columna.titulo | titlecase }}
+    </th>
+    <td mat-cell *matCellDef="let row">
+      @if(row[columna.atributo] == 'Ocupado' || row[columna.atributo] ==
+      'Reservado' || row[columna.atributo] == 'Agotado' || row[columna.atributo]
+      == 'Por Agotar'){
+      <mat-chip-listbox>
+        <mat-chip-option
+          [ngClass]="{
+            red:
+              row[columna.atributo] == 'Ocupado' ||
+              row[columna.atributo] == 'Agotado',
+            yellow:
+              row[columna.atributo] == 'Reservado' ||
+              row[columna.atributo] == 'Por Agotar'
+          }"
+        >
+          {{ row[columna.atributo] }}
+        </mat-chip-option>
+      </mat-chip-listbox>
+      }@else{
+      {{ row[columna.atributo] }}
+      }
+    </td>
+  </ng-container>
+  }
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr
+    class="mat-row"
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    (click)="clickTr.emit(row)"
+  ></tr>
+</table>

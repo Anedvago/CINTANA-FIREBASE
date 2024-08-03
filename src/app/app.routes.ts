@@ -9,6 +9,7 @@ import { HabitacionesComponent } from './Modulos/Habitaciones/pages/habitaciones
 import { ChecksComponent } from './Modulos/Checks/pages/checks/checks.component';
 import { FacturaComponent } from './Modulos/Facturacion/pages/factura/factura.component';
 import { InformesComponent } from './Modulos/Informes/pages/informes/informes.component';
+import { ClientesComponent } from './Modulos/Clientes/pages/clientes/clientes.component';
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -29,6 +30,7 @@ export const routes: Routes = [
             (m) => m.routes
           ),
       },
+      { path: 'clientes', component: ClientesComponent },
       { path: 'reservaciones', component: CalendarioComponent },
       { path: 'checks', component: ChecksComponent },
       { path: 'habitaciones', component: HabitacionesComponent },

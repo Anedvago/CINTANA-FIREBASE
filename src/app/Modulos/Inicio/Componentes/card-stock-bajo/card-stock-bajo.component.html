@@ -1,11 +1,8 @@
 <mat-card>
   <mat-card-content>
     @if(datosTabla!= undefined && datosTabla.length > 0){
-    <tabla
-      [columnas]="columnas"
-      [columnasDisplay]="columnas"
-      [datos]="datosTabla"
-    />} @else {
+    <app-tabla [datos]="datosTabla" [columnas]="columnas" />
+    } @else {
     <h4>Sin productos con stock bajo.</h4>
     }
   </mat-card-content>

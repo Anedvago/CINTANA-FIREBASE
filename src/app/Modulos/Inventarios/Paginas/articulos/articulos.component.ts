@@ -6,36 +6,34 @@ import { LayoutService } from '../../../../Servicios/layout.service';
 import { NgClass } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalNuevoArticuloComponent } from '../../Components/modal-nuevo-articulo/modal-nuevo-articulo.component';
+import { TablaComponent } from '../../../../Components/tabla/tabla.component';
+import { ColumnaTabla } from '../../../../Modelos/ColumnaTabla';
 
 @Component({
   selector: 'app-articulos',
   standalone: true,
-  imports: [TableComponent, FormularioArticulosComponent, NgClass],
+  imports: [
+    TableComponent,
+    FormularioArticulosComponent,
+    NgClass,
+    TablaComponent,
+  ],
   templateUrl: './articulos.component.html',
   styleUrl: './articulos.component.css',
 })
 export class ArticulosComponent {
   esMovil = this.layoutService.esMovil;
   esTablet = this.layoutService.esTablet;
-  public columnasDisplay = [
-    'Cod',
-    'Ref',
-    'Nombre',
-    'Precio',
-    'Stock',
-    'Dpto',
-    'Seccion',
-    'Familia',
-  ];
-  public columnas = [
-    'id',
-    'ref',
-    'name',
-    'value',
-    'stock',
-    'dpto',
-    'section',
-    'family',
+
+  columnasTabla: ColumnaTabla[] = [
+    { titulo: 'Cod', atributo: 'id' },
+    { titulo: 'Ref', atributo: 'ref' },
+    { titulo: 'Nombre', atributo: 'name' },
+    { titulo: 'Precio', atributo: 'value' },
+    { titulo: 'Stock', atributo: 'stock' },
+    { titulo: 'Dpto', atributo: 'dpto' },
+    { titulo: 'Seccion', atributo: 'section' },
+    { titulo: 'Familia', atributo: 'family' },
   ];
 
   public articulos: any[] = [];

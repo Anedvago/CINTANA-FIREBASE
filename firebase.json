@@ -1,0 +1,6 @@
+{
+  "hosting": {
+    "public": "dist/portal-de-la-cintana",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  }
+}
