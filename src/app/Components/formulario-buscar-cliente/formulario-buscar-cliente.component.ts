@@ -56,6 +56,7 @@ export class FormularioBuscarClienteComponent implements OnInit {
       identificacion: [],
       nombre: [],
       telefono: [],
+      correo: [],
     });
   }
   inicializarFormularioConCliente() {
@@ -64,6 +65,7 @@ export class FormularioBuscarClienteComponent implements OnInit {
       identificacion: [this.cliente.identification],
       nombre: [this.cliente.name],
       telefono: [this.cliente.phone],
+      correo: [this.cliente.email],
     });
   }
 
@@ -94,8 +96,9 @@ export class FormularioBuscarClienteComponent implements OnInit {
       .crearCliente(
         this.formulario.get('tipoIdentificacion')!.value,
         this.formulario.get('identificacion')!.value,
-        this.formulario.get('nombre')!.value,
-        this.formulario.get('telefono')!.value
+        this.formulario.get('nombre')!.value.toUpperCase(),
+        this.formulario.get('telefono')!.value,
+        this.formulario.get('correo')!.value.toLowerCase()
       )
       .then((data) => {
         this.clientes = data;

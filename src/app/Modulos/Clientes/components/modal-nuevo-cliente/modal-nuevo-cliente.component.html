@@ -1,0 +1,60 @@
+<div class="container">
+  <form [formGroup]="formulario">
+    <mat-form-field>
+      <mat-label>Tipo identificación</mat-label>
+      <mat-select formControlName="tipoIdentificacion">
+        @for (tipo of tiposDeIdentificacion; track tipo) {
+        <mat-option [value]="tipo.valor">
+          {{ tipo.nombre | titlecase }} </mat-option
+        >}
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Identificación</mat-label>
+      <input matInput formControlName="identificacion" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Telefono</mat-label>
+      <input formControlName="telefono" matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Correo</mat-label>
+      <input formControlName="correo" matInput type="email" />
+    </mat-form-field>
+
+    @if(cliente == undefined){
+
+    <button mat-fab extended (click)="crearCliente()">
+      <mat-icon>playlist_add</mat-icon>
+      Crear Cliente
+    </button>
+
+    }@else {
+    <div class="botonera">
+      <button
+        mat-fab
+        extended
+        class="btn btn-eliminar"
+        (click)="eliminarCliente()"
+      >
+        <mat-icon>delete</mat-icon>
+        Eliminar
+      </button>
+      <button
+        mat-fab
+        extended
+        class="btn btn-guardar"
+        (click)="modificarCliente()"
+      >
+        <mat-icon>save</mat-icon>
+        Guardar
+      </button>
+    </div>
+    }
+  </form>
+</div>

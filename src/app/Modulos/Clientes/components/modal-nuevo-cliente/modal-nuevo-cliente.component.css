@@ -1,0 +1,70 @@
+/* .container {
+  height: 90vh;
+  width: 50vw;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+form {
+  padding: 40px 0px;
+  width: 60%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+mat-form-field {
+  width: 100%;
+}
+button {
+  border-radius: 0px !important;
+  background-color: blue !important;
+  color: white !important;
+  width: 100%;
+}
+.container-btn {
+  width: 100%;
+}
+.botonera {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+ */
+.container {
+  height: 90vh;
+  width: 50vw;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+form {
+  padding: 40px 0px;
+  width: 60%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+mat-form-field {
+  width: 100%;
+}
+button {
+  border-radius: 0px !important;
+  background-color: blue !important;
+  color: white !important;
+  width: 100%;
+}
+.botonera {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.botonera .btn {
+  width: 48%;
+}
+.btn-eliminar {
+  background-color: red !important;
+}

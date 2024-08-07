@@ -77,7 +77,8 @@ export class ClienteService {
     tipoId: string,
     identificacion: string,
     nombre: string,
-    telefono: string
+    telefono: string,
+    correo: string
   ) {
     const { data, error } = await this.supabaseClient
       .from('Customers')
@@ -87,6 +88,7 @@ export class ClienteService {
           identification: identificacion,
           name: nombre,
           phone: telefono,
+          email: correo,
         },
       ])
       .select();
@@ -99,5 +101,30 @@ export class ClienteService {
       .select('*')
       .eq('id', id);
     return Customers;
+  }
+
+  public async getClientes() {
+    let { data: Customers } = await this.supabaseClient
+      .from('Customers')
+      .select('*')
+      .order('name');
+    return Customers;
+  }
+
+  public async actualizarCliente(cliente: any) {
+    let { data } = await this.supabaseClient
+      .from('Customers')
+      .update([cliente])
+      .eq('id', cliente.id)
+      .select('*');
+    return data;
+  }
+  public async eliminarCliente(id: number) {
+    const { data } = await this.supabaseClient
+      .from('Customers')
+      .delete()
+      .eq('id', id);
+
+    return data;
   }
 }
