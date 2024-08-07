@@ -22,6 +22,10 @@
       <mat-label>Telefono</mat-label>
       <input formControlName="telefono" matInput />
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>Correo electrónico</mat-label>
+      <input formControlName="correo" matInput />
+    </mat-form-field>
 
     } @if(clientes != undefined && clientes.length == 0){
     <div class="container-btn" (click)="crearCliente()">

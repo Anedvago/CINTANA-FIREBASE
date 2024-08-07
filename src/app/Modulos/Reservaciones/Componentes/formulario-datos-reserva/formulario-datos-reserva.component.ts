@@ -115,6 +115,7 @@ export class FormularioDatosReservaComponent implements OnInit {
       ((adultos != undefined && adultos > 0) ||
         (niños != undefined && niños > 0))
     ) {
+      total = dias * (80000 * adultos + 40000 * niños); //aqui obtener el valor desde configuracion
       if (metodoDePago) {
         total = total * 1.05;
       }

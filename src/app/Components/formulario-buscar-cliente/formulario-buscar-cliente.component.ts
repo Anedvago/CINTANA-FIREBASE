@@ -81,6 +81,7 @@ export class FormularioBuscarClienteComponent implements OnInit {
           this.formulario.patchValue({
             nombre: this.clientes[0].name,
             telefono: this.clientes[0].phone,
+            correo: this.clientes[0].email,
           });
           this.clienteObtenido.emit(this.clientes[0]);
         } else {
