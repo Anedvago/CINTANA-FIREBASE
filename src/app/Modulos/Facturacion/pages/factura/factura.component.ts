@@ -5,11 +5,13 @@ import { ClienteService } from '../../../../Servicios/cliente.service';
 import { FechaService } from '../../../../Servicios/fecha.service';
 import { TableComponent } from '../../../../Components/table/table.component';
 import { NgIf } from '@angular/common';
+import { TablaComponent } from '../../../../Components/tabla/tabla.component';
+import { ColumnaTabla } from '../../../../Modelos/ColumnaTabla';
 
 @Component({
   selector: 'app-factura',
   standalone: true,
-  imports: [TableComponent, NgIf],
+  imports: [TablaComponent, NgIf],
   templateUrl: './factura.component.html',
   styleUrl: './factura.component.css',
 })
@@ -36,10 +38,15 @@ export class FacturaComponent {
   idCustomer?: number;
   customer: any;
   reservation: any;
-  columsCustomer: string[] = [];
-  columsCustomerDisplay: string[] = ['ID', 'CLIENTE', 'TELEFONO'];
-  columsReservation: string[] = [];
-  columsReservationDisplay: string[] = ['CONCEPTO', 'VALOR'];
+  columnasClientes: ColumnaTabla[] = [
+    { titulo: 'ID', atributo: 'identification' },
+    { titulo: 'CLIENTE', atributo: 'name' },
+    { titulo: 'TELEFONO', atributo: 'phone' },
+  ];
+  columnasReservas: ColumnaTabla[] = [
+    { titulo: 'CONCEPTO', atributo: 'name' },
+    { titulo: 'VALOR', atributo: 'value' },
+  ];
   dateFacture: string = '';
   valuesCharges: string[] = [];
 
@@ -71,7 +78,7 @@ export class FacturaComponent {
           name: `Servicios de habitacion o cabaña`,
           value: data[0]!.total,
         };
-        this.columsReservation = ['name', 'value'];
+        /* this.columsReservation = ['name', 'value']; */
         this.rowsReservation.push(this.reservation),
           this.charges.forEach((element, index) => {
             this.rowsReservation.push({
@@ -103,7 +110,7 @@ export class FacturaComponent {
   obtenerCliente() {
     this.customerService.getClientePorId(this.idCustomer!).then((data) => {
       this.customer = data![0];
-      this.columsCustomer = ['identification', 'name', 'phone'];
+      /* this.columsCustomer = ['identification', 'name', 'phone']; */
     });
   }
 

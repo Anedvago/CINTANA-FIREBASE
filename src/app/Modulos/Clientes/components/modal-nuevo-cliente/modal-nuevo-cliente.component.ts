@@ -112,7 +112,7 @@ export class ModalNuevoClienteComponent implements OnInit {
         this.formulario.get('identificacion')!.value,
         this.formulario.get('nombre')!.value.toUpperCase(),
         this.formulario.get('telefono')!.value,
-        this.formulario.get('correo')!.value.toLowerCase()
+        this.formulario.get('correo')!.value?.toLowerCase()
       )
       .then((data) => {
         this.dialogRef.close('CREADO');

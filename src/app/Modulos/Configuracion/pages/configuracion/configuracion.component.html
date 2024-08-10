@@ -1,0 +1,27 @@
+<div class="container">
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <form>
+        @for (parametro of parametros; track parametro) {
+        <mat-form-field>
+          <mat-label>{{ parametro.nombre | titlecase }}</mat-label>
+          <input
+            matInput
+            [(ngModel)]="parametro.valor"
+            type="number"
+            [name]="parametro.nombre"
+          /> </mat-form-field
+        >}
+        <button
+          mat-fab
+          extended
+          class="btn btn-guardar"
+          (click)="guardarParametros()"
+        >
+          <mat-icon>save</mat-icon>
+          Guardar
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

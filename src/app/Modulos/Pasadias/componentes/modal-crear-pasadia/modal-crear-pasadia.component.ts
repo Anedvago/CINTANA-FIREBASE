@@ -9,6 +9,11 @@ import { FechaService } from '../../../../Servicios/fecha.service';
 import { AlertaService } from '../../../../Servicios/alerta.service';
 import { PasadiaService } from '../../../../Servicios/pasadia.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { ConfiguracionService } from '../../../../Servicios/configuracion.service';
+import { TitleCasePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-crear-pasadia',
@@ -19,6 +24,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
     MatDatepickerModule,
     MatButtonModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    TitleCasePipe,
+    FormsModule,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './modal-crear-pasadia.component.html',
@@ -28,18 +37,23 @@ export class ModalCrearPasadiaComponent implements OnInit {
   fechaSeleccionada = model<Date | null>(new Date());
   cliente: any;
   pasadia: any;
+  tarifas: any[] = [];
+  valorTarifaSeleccionada: number = 0;
   constructor(
     private fechaService: FechaService,
     private alertaService: AlertaService,
     private pasadiaService: PasadiaService,
+    private configService: ConfiguracionService,
     public dialogRef: MatDialogRef<ModalCrearPasadiaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
   ngOnInit(): void {
+    this.obtenerParametros();
     if (this.data) {
       this.pasadia = this.data;
       this.cliente = this.data.Customers;
       this.fechaSeleccionada.set(new Date(this.pasadia.fecha));
+      this.valorTarifaSeleccionada = this.data.total.toString();
     }
   }
 
@@ -48,11 +62,18 @@ export class ModalCrearPasadiaComponent implements OnInit {
   }
 
   registrarPasadia() {
-    if (this.cliente != undefined && this.fechaSeleccionada != null) {
+    if (
+      this.cliente != undefined &&
+      this.fechaSeleccionada != null &&
+      this.valorTarifaSeleccionada != 0
+    ) {
       this.pasadiaService
         .crearPasadia(
           this.cliente.id,
-          this.fechaService.convertirFecha(this.fechaSeleccionada()!.toString())
+          this.fechaService.convertirFecha(
+            this.fechaSeleccionada()!.toString()
+          ),
+          this.valorTarifaSeleccionada
         )
         .then((data) => {
           this.dialogRef.close();
@@ -62,12 +83,11 @@ export class ModalCrearPasadiaComponent implements OnInit {
     }
   }
   modificarPasadia() {
-    console.log(this.cliente.id, this.pasadia.fecha, this.pasadia.id);
-
     this.pasadiaService
       .actualizarPasadia(
         this.cliente.id,
         this.fechaService.convertirFecha(this.fechaSeleccionada()!.toString()),
+        this.valorTarifaSeleccionada,
         this.pasadia.id
       )
       .then((data) => {
@@ -78,5 +98,15 @@ export class ModalCrearPasadiaComponent implements OnInit {
     this.pasadiaService.eliminarPasadia(this.pasadia.id).then((data) => {
       this.dialogRef.close();
     });
+  }
+  obtenerParametros() {
+    this.configService
+      .getParametroPorNombres(
+        'VALOR DEL PASADIA SIN ALMUERZO',
+        'VALOR DEL PASADIA CON ALMUERZO'
+      )
+      .then((data: any) => {
+        this.tarifas = data;
+      });
   }
 }

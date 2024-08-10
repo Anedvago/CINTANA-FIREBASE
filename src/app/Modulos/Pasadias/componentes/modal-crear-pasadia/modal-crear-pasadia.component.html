@@ -5,6 +5,19 @@
     (clienteObtenido)="obtenerCliente($event)"
   ></app-formulario-buscar-cliente>
   <mat-card class="demo-inline-calendar-card">
+    <mat-form-field>
+      <mat-label>Tarifa pasadia</mat-label>
+      <mat-select
+        [(ngModel)]="valorTarifaSeleccionada"
+        name="valorTarifaSeleccionada"
+      >
+        @for (tarifa of tarifas; track tarifa) {
+        <mat-option [value]="tarifa.valor">{{
+          tarifa.nombre | titlecase
+        }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
     <mat-calendar [(selected)]="fechaSeleccionada"></mat-calendar>
 
     @if(pasadia != undefined){

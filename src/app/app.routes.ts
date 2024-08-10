@@ -10,6 +10,7 @@ import { ChecksComponent } from './Modulos/Checks/pages/checks/checks.component'
 import { FacturaComponent } from './Modulos/Facturacion/pages/factura/factura.component';
 import { InformesComponent } from './Modulos/Informes/pages/informes/informes.component';
 import { ClientesComponent } from './Modulos/Clientes/pages/clientes/clientes.component';
+import { ConfiguracionComponent } from './Modulos/Configuracion/pages/configuracion/configuracion.component';
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -37,6 +38,7 @@ export const routes: Routes = [
       { path: 'pasadias', component: CalendarioPasadias },
       { path: 'punto-de-venta', component: PuntoDeVentaComponent },
       { path: 'informes', component: InformesComponent },
+      { path: 'configuracion', component: ConfiguracionComponent },
     ],
   },
   { path: 'billing/:idCustomer/:values', component: FacturaComponent },

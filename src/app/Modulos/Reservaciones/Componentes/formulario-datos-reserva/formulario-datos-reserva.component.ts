@@ -15,6 +15,7 @@ import {
 } from '@angular/forms';
 import { TitleCasePipe } from '@angular/common';
 import { AlertaService } from '../../../../Servicios/alerta.service';
+import { ConfiguracionService } from '../../../../Servicios/configuracion.service';
 
 @Component({
   selector: 'app-formulario-datos-reserva',
@@ -37,6 +38,8 @@ export class FormularioDatosReservaComponent implements OnInit {
   habitaciones: any[] = [];
   formularioReserva!: FormGroup;
   formularioPago!: FormGroup;
+  valorNocheAdultos: number = 0;
+  valorNocheNiños: number = 0;
   @Input() reserva: any;
   public tiposDePago = ['EFECTIVO', 'TRANSFERENCIA', 'DATAFONO'];
   @Output() registraReserva = new EventEmitter<any>();
@@ -46,17 +49,30 @@ export class FormularioDatosReservaComponent implements OnInit {
   constructor(
     private habitacionService: HabitacionService,
     private fb: FormBuilder,
-    private alertaService: AlertaService
+    private alertaService: AlertaService,
+    private configService: ConfiguracionService
   ) {}
   ngOnInit(): void {
     this.obtenerHabitaciones();
+    this.obtenerParametros();
     if (this.reserva != undefined) {
       this.inicializarFormularioConReserva();
     } else {
       this.inicializarFormulario();
     }
   }
-
+  obtenerParametros() {
+    this.configService
+      .getParametroPorNombre('VALOR DE LA NOCHE PARA NIÑOS')
+      .then((data: any) => {
+        this.valorNocheNiños = data[0].valor;
+      });
+    this.configService
+      .getParametroPorNombre('VALOR DE LA NOCHE PARA ADULTOS')
+      .then((data: any) => {
+        this.valorNocheAdultos = data[0].valor;
+      });
+  }
   obtenerHabitaciones() {
     this.habitacionService.getHabitaciones().then((data) => {
       this.habitaciones = data!;
@@ -115,7 +131,9 @@ export class FormularioDatosReservaComponent implements OnInit {
       ((adultos != undefined && adultos > 0) ||
         (niños != undefined && niños > 0))
     ) {
-      total = dias * (80000 * adultos + 40000 * niños); //aqui obtener el valor desde configuracion
+      total =
+        dias *
+        (this.valorNocheAdultos * adultos + this.valorNocheNiños * niños); //aqui obtener el valor desde configuracion
       if (metodoDePago) {
         total = total * 1.05;
       }

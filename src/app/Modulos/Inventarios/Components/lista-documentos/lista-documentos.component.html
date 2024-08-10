@@ -1,9 +1,8 @@
 <div class="container">
-  <tabla
-    [active]="esMovil ? '' : facturaSeleccionada?.id"
+  <app-tabla
     (clickTr)="seleccionarFactura($event)"
     [columnas]="columnas"
-    [columnasDisplay]="columnasDisplay"
     [datos]="datos"
-  ></tabla>
+    [trActiva]="esMovil ? '' : facturaSeleccionada?.id"
+  />
 </div>

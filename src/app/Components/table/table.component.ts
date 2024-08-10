@@ -4,7 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
-  selector: 'tabla',
+  selector: 'tabla2',
   standalone: true,
   imports: [CommonModule, MatTableModule, MatChipsModule],
   templateUrl: './table.component.html',

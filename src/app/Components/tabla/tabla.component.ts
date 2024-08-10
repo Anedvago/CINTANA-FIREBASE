@@ -22,6 +22,7 @@ export class TablaComponent implements OnChanges {
   @Input() columnas: ColumnaTabla[] = [];
   @Input() datos: any[] = [];
   @Output() clickTr = new EventEmitter<any>();
+  @Input() trActiva?: number = 0;
 
   ngOnChanges(changes: SimpleChanges): void {
     this.displayedColumns = this.columnas.map((c) => c.atributo);

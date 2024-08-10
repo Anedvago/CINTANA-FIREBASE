@@ -43,26 +43,33 @@ export class PasadiaService {
     return changes.asObservable();
   }
 
-  async crearPasadia(clienteId: number, fecha: string) {
+  async crearPasadia(clienteId: number, fecha: string, total: number) {
     const { data, error } = await this.supabaseClient
       .from('Pasadias')
       .insert([
         {
           cliente: clienteId,
           fecha: fecha,
+          total: total,
         },
       ])
       .select();
     return data;
   }
 
-  async actualizarPasadia(clienteId: number, fecha: string, idPasadia: number) {
+  async actualizarPasadia(
+    clienteId: number,
+    fecha: string,
+    total: number,
+    idPasadia: number
+  ) {
     const { data, error } = await this.supabaseClient
       .from('Pasadias')
       .update([
         {
           cliente: clienteId,
           fecha: fecha,
+          total: total,
         },
       ])
       .eq('id', idPasadia)

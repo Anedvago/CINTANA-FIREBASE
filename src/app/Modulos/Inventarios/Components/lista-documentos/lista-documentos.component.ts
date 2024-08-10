@@ -8,20 +8,23 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { TableComponent } from '../../../../Components/table/table.component';
-import { CompraService } from '../../../../Servicios/compra.service';
 import { LayoutService } from '../../../../Servicios/layout.service';
 import { Router } from '@angular/router';
+import { TablaComponent } from '../../../../Components/tabla/tabla.component';
+import { ColumnaTabla } from '../../../../Modelos/ColumnaTabla';
 
 @Component({
   selector: 'app-lista-documentos',
   standalone: true,
-  imports: [TableComponent],
+  imports: [TablaComponent],
   templateUrl: './lista-documentos.component.html',
   styleUrl: './lista-documentos.component.css',
 })
 export class ListaDocumentosComponent implements OnChanges {
-  columnas = ['date', 'id'];
-  columnasDisplay = ['Fecha', 'Num'];
+  columnas: ColumnaTabla[] = [
+    { titulo: 'Fecha', atributo: 'date' },
+    { titulo: 'Num', atributo: 'id' },
+  ];
   @Input() datos: any[] = [];
   @Input() tipo: string = '';
   facturaSeleccionada: any;

@@ -1,11 +1,7 @@
 <mat-card>
   <mat-card-content>
     @if (datosTabla != undefined && datosTabla.length > 0) {
-    <tabla
-      [columnas]="columnas"
-      [columnasDisplay]="columnasDisplay"
-      [datos]="datosTabla"
-    />
+    <app-tabla [columnas]="columnas" [datos]="datosTabla" />
     }@else {
     <h4>Sin clientes en transito.</h4>
     }

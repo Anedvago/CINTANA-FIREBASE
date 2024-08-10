@@ -35,5 +35,6 @@
     mat-row
     *matRowDef="let row; columns: displayedColumns"
     (click)="clickTr.emit(row)"
+    [ngClass]="{ active: trActiva == row.id }"
   ></tr>
 </table>

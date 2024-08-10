@@ -10,7 +10,7 @@
 .container-movil-tablet {
   height: 93vh;
 }
-tabla {
+app-tabla {
   width: 95%;
   height: 85%;
   overflow-y: auto;
@@ -18,6 +18,6 @@ tabla {
 .tabla-movil {
   height: 80%;
 }
-app-formulario-articulos {
+app-formulario-bqc {
   width: 90%;
 }

@@ -6,26 +6,28 @@ import { ServicioService } from '../../../../Servicios/servicio.service';
 import { LayoutService } from '../../../../Servicios/layout.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalNuevoServicioComponent } from '../../Components/modal-nuevo-servicio/modal-nuevo-servicio.component';
+import { TablaComponent } from '../../../../Components/tabla/tabla.component';
+import { ColumnaTabla } from '../../../../Modelos/ColumnaTabla';
+import { FormularioBqcComponent } from '../../../../Components/formulario-bqc/formulario-bqc.component';
 
 @Component({
   selector: 'app-servicios',
   standalone: true,
-  imports: [TableComponent, FormularioArticulosComponent, NgClass],
+  imports: [TablaComponent, NgClass, FormularioBqcComponent],
   templateUrl: './servicios.component.html',
   styleUrl: './servicios.component.css',
 })
 export class ServiciosComponent {
   esMovil = this.layoutService.esMovil;
   esTablet = this.layoutService.esTablet;
-  public columnasDisplay = [
-    'Cod',
-    'Nombre',
-    'Precio',
-    'Dpto',
-    'Seccion',
-    'Familia',
+  columnas: ColumnaTabla[] = [
+    { titulo: 'Cod', atributo: 'id' },
+    { titulo: 'Nombre', atributo: 'name' },
+    { titulo: 'Precio', atributo: 'value' },
+    { titulo: 'Dpto', atributo: 'dpto' },
+    { titulo: 'Seccion', atributo: 'section' },
+    { titulo: 'Familia', atributo: 'family' },
   ];
-  public columnas = ['id', 'name', 'value', 'dpto', 'section', 'family'];
 
   public servicios: any[] = [];
   public serviciosFiltrados: any[] = [];
@@ -59,6 +61,14 @@ export class ServiciosComponent {
 
   public quitarFiltros() {
     this.serviciosFiltrados = this.servicios.slice();
+  }
+  crearServicio() {
+    const dialogRef = this.dialog.open(ModalNuevoServicioComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result !== undefined) {
+        this.getServicios();
+      }
+    });
   }
   modificarServicio(event: any) {
     const dialogRef = this.dialog.open(ModalNuevoServicioComponent, {

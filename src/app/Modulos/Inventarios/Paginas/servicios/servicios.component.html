@@ -2,16 +2,15 @@
   class="container"
   [ngClass]="{ 'container-movil-tablet': esMovil == true || esTablet == true }"
 >
-  <app-formulario-articulos
+  <app-formulario-bqc
     formularioPara="SERVICIOS"
     (clickBuscar)="filtrarPorNombre($event)"
     (clickQuitarFiltros)="quitarFiltros()"
-    (servicioCreado)="getServicios()"
-  ></app-formulario-articulos>
-  <tabla
+    (clickCrear)="crearServicio()"
+  />
+  <app-tabla
     [ngClass]="{ 'tabla-movil': esMovil }"
     [columnas]="columnas"
-    [columnasDisplay]="columnasDisplay"
     [datos]="serviciosFiltrados"
     (clickTr)="modificarServicio($event)"
   />
